@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['click',['$event']]]]]}}" class="position-absolute data-v-0de4df96" style="{{'z-index:'+(99)+';'+('height:'+(height+'px')+';')+('top:'+(top+'px')+';')+('left:'+(left+'px')+';')}}" bindtap="__e"><image style="{{'height:'+(height+'px')+';'+('width:'+(height+'px')+';')}}" src="/static/images/back.png" class="data-v-0de4df96"></image></view>

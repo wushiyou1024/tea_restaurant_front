@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "我的卡券",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "usingComponents": {
+    "modal": "/components/modal/modal",
+    "jyf-parser": "/components/jyf-parser/jyf-parser"
+  }
+}

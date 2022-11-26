@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "券包商品",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "loading": "/components/loading"
+  }
+}

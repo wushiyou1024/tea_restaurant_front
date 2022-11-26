@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "购买劵包",
+  "navigationBarTextStyle": "black",
+  "navigationBarBackgroundColor": "#ffffff",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "modal": "/components/modal/modal"
+  }
+}
