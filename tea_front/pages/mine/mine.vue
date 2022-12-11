@@ -163,7 +163,7 @@
 		<!-- service box end -->
 		<!-- tips begin -->
 		<view class="d-flex just-content-center align-items-center text-color-assist" style="padding: 30rpx 0; font-size: 22rpx;">
-			会员卡适用于奈雪的茶和奈雪酒屋指定范围
+			会员卡适用于厦理茶餐厅指定范围
 		</view>
 		<!-- tisps end -->
 	</view>
