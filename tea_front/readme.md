@@ -2,21 +2,13 @@
 
 ### 源码地址
 
-github地址: [https://github.com/tinypuppet/nxdc-milktea](https://github.com/tinypuppet/nxdc-milktea)
-
-gitee地址：[https://gitee.com/tinypuppet/nxdc-milktea](https://gitee.com/tinypuppet/nxdc-milktea)
-
 uni-app插件市场地址:[https://ext.dcloud.net.cn/plugin?id=1807](https://ext.dcloud.net.cn/plugin?id=1807)
 
 ### 简介
-
-一套仿奈雪の茶小程序的项目模板。
-
-如果你喜欢这套模板，请给个star呗~
+茶餐厅用户小程序界面
 
 ### 个人说明
 
-如有问题，请联系QQ或微信``327722714``。
 
 ### 说明
 
@@ -44,10 +36,8 @@ uni-app插件市场地址:[https://ext.dcloud.net.cn/plugin?id=1807](https://ext
 	- 开发票
 	- 礼品卡
 
-2. 所有数据都是静态的，保存在api文件夹下。
 
 ### 展示效果
 
 |首页|点餐|饮品详情|我的|取餐|
 |---|---|---|---|---|
-|![](https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/fafaa180-94f3-11ea-9423-8760f636375f_0.jpg?v=1590130842)|![](https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/fafaa180-94f3-11ea-9423-8760f636375f_1.jpg?v=1590130842)|![](https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/fafaa180-94f3-11ea-9423-8760f636375f_2.jpg?v=1590130842)|![](https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/fafaa180-94f3-11ea-9423-8760f636375f_3.jpg?v=1590130842)|![](https://img.cdn.aliyun.dcloud.net.cn/stream/plugin_screens/fafaa180-94f3-11ea-9423-8760f636375f_4.jpg?v=1590130842)|
