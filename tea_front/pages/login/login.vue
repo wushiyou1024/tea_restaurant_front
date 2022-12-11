@@ -5,7 +5,7 @@
 			<view class="tips">
 				一杯好茶，一口软欧包
 				<br>
-				在奈雪遇见两种美好
+				在茶餐厅遇见两种美好
 			</view>
 		</view>
 		<view class="bottom">
@@ -41,7 +41,7 @@
 					</view>
 					<view class="grid">
 						<image src="/static/images/mine/nxbz.png"></image>
-						<view>奈雪宝藏</view>
+						<view>你的宝藏</view>
 					</view>
 				</view>
 				<view class="font-size-base text-color-primary">会员权益说明</view>

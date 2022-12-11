@@ -34,6 +34,8 @@
 							 <progress percent="0" activeColor="#ADB838" height="8rpx" :percent="growthValue" border-radius="8rpx"/>
 						</view>
 					</view>
+					
+					
 					<view class="level-benefit d-flex flex-shrink-0 align-items-center justify-content-end text-color-white bg-warning font-size-sm">
 						<view>会员权益</view>
 						<view class="iconfont iconarrow-right line-height-100"></view>
@@ -189,7 +191,7 @@
 		methods: {
 			login() {
 				uni.navigateTo({
-					url: '/pages/login/login'
+					url: '/pages/login/index'
 				})
 			},
 			packages() {

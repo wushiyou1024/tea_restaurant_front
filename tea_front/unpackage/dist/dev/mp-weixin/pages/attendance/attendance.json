@@ -1,8 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "usingComponents": {
-    "modal": "/components/modal/modal",
-    "navbar-back-button": "/components/navbar-back-button",
-    "uni-calendar": "/pages/attendance/uni-calendar/uni-calendar"
-  }
-}

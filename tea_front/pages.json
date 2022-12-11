@@ -8,21 +8,21 @@
 		}, {
 			"path": "pages/menu/menu",
 			"style": {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}, {
 			"path": "pages/take-foods/take-foods",
 			"style": {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}, {
 			"path": "pages/mine/mine",
 			"style": {
-				"navigationBarTitleText": "奈雪乐园",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -30,7 +30,7 @@
 	    ,{
             "path" : "pages/pay/pay",
             "style" : {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -38,39 +38,23 @@
         ,{
             "path" : "pages/remark/remark",
             "style" : {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         }
-        ,{
-            "path" : "pages/packages/index",
-            "style" : {
-				"navigationBarTitleText": "券包商品",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff",
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/packages/detail",
-            "style" : {
-				"navigationBarTitleText": "购买劵包",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff",
-				"enablePullDownRefresh": true
-			}
-        }
-        ,{
-            "path" : "pages/balance/balance",
-            "style" : {
-				"navigationBarTitleText": "会员储值",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
+        
+       
+       
         ,{
             "path" : "pages/login/login",
+            "style" : {
+				"navigationBarTitleText": "登录",
+				"navigationBarTextStyle": "black",
+				"navigationBarBackgroundColor": "#ffffff"
+			}
+        } ,{
+            "path" : "pages/login/index",
             "style" : {
 				"navigationBarTitleText": "登录",
 				"navigationBarTextStyle": "black",
@@ -88,24 +72,13 @@
         ,{
             "path" : "pages/address/add",
             "style" : {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         }
-        ,{
-            "path" : "pages/integrals/integrals",
-            "style" : {
-				"navigationStyle":"custom",
-				"onReachBottomDistance": 50
-			}
-        }
-        ,{
-            "path" : "pages/attendance/attendance",
-            "style" : {
-				"navigationStyle":"custom"
-			}
-        }
+     
+     
         ,{
             "path" : "pages/orders/orders",
             "style" : {
@@ -124,22 +97,8 @@
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         }
-        ,{
-            "path" : "pages/mine/member-code",
-            "style" : {
-				"navigationBarTitleText": "会员码",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
-        ,{
-            "path" : "pages/coupons/coupons",
-            "style" : {
-				"navigationBarTitleText": "我的卡券",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
+        
+      
         ,{
             "path" : "pages/mine/userinfo",
             "style" : {
@@ -148,71 +107,27 @@
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         },
+		
 		{
-		    "path" : "pages/integrals/flow",
-		    "style" : {
-				"navigationBarTitleText": "积分明细",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-		},
-		{
-		    "path" : "pages/integrals/detail",
-		    "style" : {
-				"navigationBarTitleText": "兑换详情",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-		}
-        ,{
             "path" : "pages/review/review",
             "style" : {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         }
-        ,{
-            "path" : "pages/activities/invite",
-            "style" : {
-				"navigationBarTitleText": "奈雪の茶",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
-        ,{
-            "path" : "pages/services/services",
-            "style" : {
-				"navigationBarTitleText": "奈雪の茶",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
+        
+      
         ,{
             "path" : "pages/invoice/invoice",
             "style" : {
-				"navigationBarTitleText": "奈雪の茶",
+				"navigationBarTitleText": "厦理茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
         }
-        ,{
-            "path" : "pages/services/help-center",
-            "style" : {
-				"navigationBarTitleText": "帮助中心",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
-        ,{
-            "path" : "pages/giftcard/giftcard",
-            "style" : {
-				"navigationBarTitleText": "礼品卡列表",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff",
-				"disableScroll": true
-			}
-        }
+      
+    
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "积分明细",
-  "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#ffffff",
-  "usingComponents": {
-    "list-cell": "/components/list-cell/list-cell"
-  }
-}

@@ -6,7 +6,7 @@
 					<view class="label">昵称</view>
 					<view class="input flex-fill">
 						<input type="text" placeholder="请填写昵称" placeholder-class="text-color-assist font-size-base" 
-						v-model="member.nickname">
+						v-model="member.name">
 					</view>
 				</view>
 			</list-cell>
@@ -14,7 +14,7 @@
 				<view class="form-input w-100 d-flex align-items-center">
 					<view class="label">手机号码</view>
 					<view class="input flex-fill">
-						<input type="text" v-model="member.mobilePhone" disabled>
+						<input type="text" v-model="member.phone" disabled>
 					</view>
 				</view>
 			</list-cell>
@@ -23,31 +23,13 @@
 					<view class="label">性别</view>
 					<view class="input flex-fill">
 						<view class="radio-group">
-							<view class="radio" :class="{'checked': member.gender == '1'}" style="margin-right: 10rpx;" @tap="member.gender=1">先生</view>
-							<view class="radio" :class="{'checked': member.gender == '2'}" @tap="member.gender=2">女士</view>
+							<view class="radio" :class="{'checked': member.sex == '1'}" style="margin-right: 10rpx;" @tap="member.sex=1">先生</view>
+							<view class="radio" :class="{'checked': member.sex == '2'}" @tap="member.sex=2">女士</view>
 						</view>
 					</view>
 				</view>
 			</list-cell>
-			<list-cell :hover="false" :arrow="!member.birthday">
-				<view class="form-input w-100 d-flex align-items-center">
-					<view class="label">生日</view>
-					<view class="input flex-fill">
-						<picker mode="date" :value="date" :start="startDate" :end="endDate" v-if="!member.birthday" @change="handleDateChange">
-							生日当天有惊喜
-						</picker>
-						<input type="text" v-else :value="member.birthday" disabled>
-					</view>
-				</view>
-			</list-cell>
-			<list-cell :hover="false" last>
-				<view class="form-input w-100 d-flex align-items-center">
-					<view class="label">入会时间</view>
-					<view class="input flex-fill">
-						<input type="text" v-model="member.openingCardDate" disabled>
-					</view>
-				</view>
-			</list-cell>
+		
 		</view>
 		<view class="btn-box d-flex align-items-center just-content-center">
 			<button type="primary" class="save-btn" @tap="save">保存</button>
@@ -63,45 +45,44 @@
 			listCell
 		},
 		data() {
-			const currentDate = this.getDate({format: true})
+		
 			return {
 				member: {},
-				date: currentDate
+		
 			}
 		},
 		computed: {
-		   startDate() {
-				return this.getDate('start');
-			},
-			endDate() {
-				return this.getDate('end');
-			}
+		 
 		},
 		onLoad() {
-			this.member = this.$store.state.member
+			this.getUser();
+		
 		},
 		methods: {
-			getDate(type) {
-				const date = new Date();
-				let year = date.getFullYear();
-				let month = date.getMonth() + 1;
-				let day = date.getDate();
-	
-				if (type === 'start') {
-					year = year - 60;
-				} else if (type === 'end') {
-					year = year + 2;
-				}
-				month = month > 9 ? month : '0' + month;;
-				day = day > 9 ? day : '0' + day;
-				return `${year}-${month}-${day}`;
-			},
-			handleDateChange(e) {
-				this.member.birthday = e.target.value
-			},
+			async getUser(){
+				 const res= await	this.$myRequet({
+				 		url: '/user/getUser',
+				 		method: 'post',
+				 		data:{
+				 			phone:this.$store.state.member.mobilePhone	
+				 		}
+				 	});
+				 	
+					this.member=res.data.data;
+					console.log(this.member)
+			 },
 			save() {
-				const member = Object.assign(this.$store.state.member, this.member)
-				this.$store.commit('SET_MEMBER', member)
+				// const member = Object.assign(this.$store.state.member, this.member)
+				// this.$store.commit('SET_MEMBER', member)
+				const res= 	this.$myRequet({
+						url: '/user/save',
+						method: 'post',
+						data:{
+							name:this.member.name,
+							sex:this.member.sex,
+							phone:this.member.phone
+						}
+					});
 				uni.navigateBack()
 			}
 		}

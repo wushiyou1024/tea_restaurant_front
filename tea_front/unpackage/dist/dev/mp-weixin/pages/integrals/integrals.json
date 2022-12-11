@@ -1,8 +1,0 @@
-{
-  "navigationStyle": "custom",
-  "onReachBottomDistance": 50,
-  "usingComponents": {
-    "uni-steps": "/components/uni-steps/uni-steps",
-    "navbar-back-button": "/components/navbar-back-button"
-  }
-}
