@@ -1,13 +1,13 @@
 
-export isValidUsername (str) {
+export function isValidUsername (str) {
   return ['admin', 'editor'].indexOf(str.trim()) >= 0;
 }
 
-export isExternal (path) {
+export function isExternal (path) {
   return /^(https?:|mailto:|tel:)/.test(path);
 }
 
-export isCellPhone (val) {
+export function isCellPhone (val) {
   if (!/^1(3|4|5|6|7|8)\d{9}$/.test(val)) {
     return false
   } else {
@@ -16,7 +16,7 @@ export isCellPhone (val) {
 }
 
 //校验账号
-export checkUserName (rule, value, callback){
+export function checkUserName (rule, value, callback){
   if (value == "") {
     callback(new Error("请输入账号"))
   } else if (value.length > 20 || value.length <3) {
@@ -27,7 +27,7 @@ export checkUserName (rule, value, callback){
 }
 
 //校验姓名
-export checkName (rule, value, callback){
+export function checkName (rule, value, callback){
   if (value == "") {
     callback(new Error("请输入姓名"))
   } else if (value.length > 12) {
@@ -37,7 +37,7 @@ export checkName (rule, value, callback){
   }
 }
 
-export checkPhone (rule, value, callback){
+export function checkPhone (rule, value, callback){
   // let phoneReg = /(^1[3|4|5|6|7|8|9]\d{9}$)|(^09\d{8}$)/;
   if (value == "") {
     callback(new Error("请输入手机号"))
@@ -49,7 +49,7 @@ export checkPhone (rule, value, callback){
 }
 
 
-export validID (rule,value,callback) {
+export function validID (rule,value,callback) {
   // 身份证号码为15位或者18位，15位时全为数字，18位前17位为数字，最后一位是校验位，可能为数字或字符X
   let reg = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/
   if(value == '') {

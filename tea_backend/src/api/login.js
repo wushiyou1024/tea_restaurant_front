@@ -9,7 +9,7 @@ export function loginApi(data) {
 
 export function logoutApi(){
   return axios({
-    url: '/employee/logout',
+    url: '/api/employee/logout',
     method: 'post',
   })
 }

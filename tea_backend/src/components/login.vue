@@ -85,7 +85,7 @@ import { loginApi } from '../api/login.js'
 					  console.log("11")
 	                localStorage.setItem('userInfo',JSON.stringify(res.data))
 	             //进行路由
-				 this.$router.push({path:'/index'})
+				 this.$router.push({path:'/member/index'})
 				 
 			
 	              } else {
