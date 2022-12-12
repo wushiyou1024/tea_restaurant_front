@@ -124,11 +124,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
-      _vm.form.sex = 0
+      _vm.form.sex = 1
     }
 
     _vm.e1 = function($event) {
-      _vm.form.sex = 1
+      _vm.form.sex = 0
     }
   }
 }
@@ -212,30 +212,104 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+
+
+
+
 {
   components: {
     listCell: listCell },
 
   data: function data() {
     return {
+      edit: 0,
       form: {
-        accept_name: '',
+        id: 0,
+        consignee: '',
         sex: 0,
-        mobile: '',
-        street: '',
-        door_number: '' } };
+        phone: '',
+        detail: '',
+        label: '',
+        userId: 1 } };
 
 
   },
-  onLoad: function onLoad(_ref) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var id;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:id = _ref.id;
+  onLoad: function onLoad(_ref)
+
+
+  {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var id, userid;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:id = _ref.id, userid = _ref.userid;
+              // console.log(id)
+
               //为了方便演示，这里用本地缓存
               if (id) {
-                _this.form = _this.$store.state.addresses.find(function (item) {return item.id == id;});
+                // this.form = this.$store.state.addresses.find(item => item.id == id)
+                _this.getAddress(id);
+                _this.edit = 1;
+              } else
+              {
+                _this.form.userId = userid;
+                // console.log(this.userId)
               }case 2:case "end":return _context.stop();}}}, _callee);}))();
+
   },
   methods: {
-    save: function save() {
-      uni.navigateBack();
+
+    getAddress: function getAddress(id) {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRequet({
+                    url: '/addressBook',
+                    method: 'get',
+                    data: {
+                      id: id } }));case 2:res = _context2.sent;
+
+
+
+                _this2.form = res.data.data;
+                // console.log(this.form.sex)
+              case 4:case "end":return _context2.stop();}}}, _callee2);}))();},
+
+    save: function save() {var _this3 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res, _res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:
+                console.log(_this3.form.sex);
+                //调用保存接口
+                if (!(
+                _this3.edit == 1)) {_context3.next = 8;break;}_context3.next = 4;return (
+                  _this3.$myRequet({
+                    url: '/addressBook',
+                    method: 'PUT',
+                    data: {
+                      id: _this3.form.id,
+                      consignee: _this3.form.consignee,
+                      sex: _this3.form.sex,
+                      phone: _this3.form.phone,
+                      detail: _this3.form.detail,
+                      label: _this3.form.label,
+                      userId: _this3.form.userId } }));case 4:res = _context3.sent;
+
+
+                if (res.data.code == 1) {
+                  uni.navigateBack();
+                }_context3.next = 12;break;case 8:_context3.next = 10;return (
+
+                  _this3.$myRequet({
+                    url: '/addressBook',
+                    method: 'post',
+                    data: {
+                      id: _this3.form.id,
+                      consignee: _this3.form.consignee,
+                      sex: _this3.form.sex,
+                      phone: _this3.form.phone,
+                      detail: _this3.form.detail,
+                      label: _this3.form.label,
+                      userId: _this3.form.userId } }));case 10:_res = _context3.sent;
+
+
+                if (_res.data.code == 1) {
+                  uni.navigateBack();
+                }case 12:case "end":return _context3.stop();}}}, _callee3);}))();
+
+
+
+
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

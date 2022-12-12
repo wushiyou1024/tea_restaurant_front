@@ -158,8 +158,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 var _vuex = __webpack_require__(/*! vuex */ 33);
+
+
 var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var _default =
 {
   /**
@@ -171,7 +172,7 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17)
    */
   data: function data() {
     return {
-      title: '欢迎回来！', //填写logo或者app名称，也可以用：欢迎回来，看您需求
+      title: '同学你好！', //填写logo或者app名称，也可以用：欢迎回来，看您需求
       second: 60, //默认60秒
       showText: true, //判断短信是否发送
       phone: '', //手机号码
@@ -185,15 +186,24 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17)
     login: function login() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var that, res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
                 that = _this;if (
                 that.phone) {_context.next = 4;break;}
-                uni.showToast({ title: '请输入手机号', icon: 'none' });return _context.abrupt("return");case 4:if (
+                uni.showToast({
+                  title: '请输入手机号',
+                  icon: 'none' });return _context.abrupt("return");case 4:if (
+
 
 
                 /^[1][3,4,5,7,8,9][0-9]{9}$/.test(that.phone)) {_context.next = 7;break;}
-                uni.showToast({ title: '请输入正确手机号', icon: 'none' });return _context.abrupt("return");case 7:if (
+                uni.showToast({
+                  title: '请输入正确手机号',
+                  icon: 'none' });return _context.abrupt("return");case 7:if (
+
 
 
                 that.yzm) {_context.next = 10;break;}
-                uni.showToast({ title: '请输入验证码', icon: 'none' });return _context.abrupt("return");case 10:_context.next = 12;return (
+                uni.showToast({
+                  title: '请输入验证码',
+                  icon: 'none' });return _context.abrupt("return");case 10:_context.next = 12;return (
+
 
 
 
@@ -208,8 +218,13 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17)
 
                 console.log(res.data);
                 if (res.data.code == 1) {
-                  uni.showToast({ title: '登录成功！', icon: 'none' });
+                  uni.showToast({
+                    title: '登录成功！',
+                    icon: 'none' });
+
                   _member.default.mobilePhone = res.data.data.phone;
+                  _member.default.nickname = res.data.data.name;
+                  _member.default.customerId = res.data.data.id;
                   // window.sessionStorage.setItem('user', JSON.stringify(res.data.data.phone))
                   _this.SET_MEMBER(_member.default);
                   uni.navigateBack();
@@ -245,11 +260,17 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17)
     },
     //等三方微信登录
     wxLogin: function wxLogin() {
-      uni.showToast({ title: '微信登录', icon: 'none' });
+      uni.showToast({
+        title: '微信登录',
+        icon: 'none' });
+
     },
     //第三方支付宝登录
     zfbLogin: function zfbLogin() {
-      uni.showToast({ title: '支付宝登录', icon: 'none' });
+      uni.showToast({
+        title: '支付宝登录',
+        icon: 'none' });
+
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

@@ -19,7 +19,7 @@
 							<image src='/static/images/order/location.png' style="width: 30rpx; height: 30rpx;"
 								class="mr-10"></image>
 							<view class="font-size-extra-lg text-color-base font-weight-bold text-truncate">
-								{{ address.street }}
+								{{ address.detail }}
 							</view>
 						</view>
 						<view class="font-size-sm text-color-assist overflow-hidden text-truncate">
@@ -355,7 +355,7 @@
 
 				if (!this.isLogin) {
 					uni.navigateTo({
-						url: '/pages/login/login'
+						url: '/pages/login/index'
 					})
 					return
 				}
@@ -581,7 +581,7 @@
 			toPay() {
 				if (!this.isLogin) {
 					uni.navigateTo({
-						url: '/pages/login/login'
+						url: '/pages/login/index'
 					})
 					return
 				}

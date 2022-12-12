@@ -170,9 +170,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniSwipeAction = function uniSwipeAction() {__webpack_require__.e(/*! require.ensure | components/uni-swipe-action/uni-swipe-action */ "components/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-swipe-action/uni-swipe-action */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniSwipeActionItem = function uniSwipeActionItem() {Promise.all(/*! require.ensure | components/uni-swipe-action-item/uni-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-swipe-action-item/uni-swipe-action-item")]).then((function () {return resolve(__webpack_require__(/*! ../../components/uni-swipe-action-item/uni-swipe-action-item */ 179));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 
+
+
+var _vuex = __webpack_require__(/*! vuex */ 33);
+
+
+
+
+
+var _addresses2 = _interopRequireDefault(__webpack_require__(/*! ../../api/addresses */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var uniSwipeAction = function uniSwipeAction() {__webpack_require__.e(/*! require.ensure | components/uni-swipe-action/uni-swipe-action */ "components/uni-swipe-action/uni-swipe-action").then((function () {return resolve(__webpack_require__(/*! ../../components/uni-swipe-action/uni-swipe-action */ 174));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var uniSwipeActionItem = function uniSwipeActionItem() {Promise.all(/*! require.ensure | components/uni-swipe-action-item/uni-swipe-action-item */[__webpack_require__.e("common/vendor"), __webpack_require__.e("components/uni-swipe-action-item/uni-swipe-action-item")]).then((function () {return resolve(__webpack_require__(/*! ../../components/uni-swipe-action-item/uni-swipe-action-item */ 179));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   components: {
@@ -181,48 +189,83 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
 
   data: function data() {
     return {
+      addressList: {},
       scene: 'menu',
       is_choose: false, //是否选择地址
-      swipeOption: [
-      {
+      swipeOption: [{
         text: '删除',
         style: {
           backgroundColor: '#D12E32' } }] };
 
 
 
-
   },
-  computed: _objectSpread({},
+  computed: _objectSpread(_objectSpread({},
   (0, _vuex.mapState)(['addresses'])),
+  (0, _vuex.mapState)(['member'])),
 
-  onLoad: function onLoad(_ref) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var is_choose, scene;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:is_choose = _ref.is_choose, scene = _ref.scene;
-              _this.is_choose = is_choose || false;
-              _this.scene = scene || 'menu';case 3:case "end":return _context.stop();}}}, _callee);}))();
+
+
+  onShow: function onShow() {
+
+    this.getAddress();
   },
-  methods: _objectSpread(_objectSpread({},
+
+  onLoad: function onLoad(_ref)
+
+
+
+  {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var is_choose, scene;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:is_choose = _ref.is_choose, scene = _ref.scene;
+              _this.is_choose = is_choose || false;
+              _this.scene = scene || 'menu';
+              // console.log(this.member)
+
+              // console.log(addresses)
+            case 3:case "end":return _context.stop();}}}, _callee);}))();},
+  methods: _objectSpread(_objectSpread(_objectSpread({},
+  (0, _vuex.mapMutations)(['SET_ADDRESS'])), {}, {
+
+    getAddress: function getAddress() {var _this2 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
+                  _this2.$myRequet({
+                    url: '/addressBook/list',
+                    method: 'get',
+                    data: {
+                      userId: _this2.member.customerId } }));case 2:res = _context2.sent;
+
+
+                // const Address = Object.assign(addresses, res.data.data)
+                // this.SET_ADDRESS(Address)
+                // console.log(addresses)
+                _this2.addressList = res.data.data;
+                console.log(_this2.addressList);case 5:case "end":return _context2.stop();}}}, _callee2);}))();
+    } },
+
   (0, _vuex.mapMutations)(['SET_ADDRESS', 'SET_ADDRESSES', 'SET_ORDER_TYPE'])), {}, {
-    add: function add() {
+    add: function add(userId) {
       uni.navigateTo({
-        url: '/pages/address/add' });
+        url: '/pages/address/add?userid=' + userId });
 
     },
-    edit: function edit(id) {
+    edit: function edit(id, userid) {
+      // console.log(userid)
       uni.navigateTo({
-        url: '/pages/address/add?id=' + id });
+        url: '/pages/address/add?id=' + id + '&userid=' + userid });
 
     },
-    handleSwipeClick: function handleSwipeClick(id) {var _this2 = this;
+    handleSwipeClick: function handleSwipeClick(id) {var _this3 = this;
       uni.showModal({
         title: '提示',
         content: '确定要删除？',
         success: function success(res) {
           if (res.confirm) {
-            var index = _this2.addresses.findIndex(function (item) {return item.id == id;});
-            var addresses = JSON.parse(JSON.stringify(_this2.addresses));
-            addresses.splice(index, 1);
-            _this2.SET_ADDRESSES(addresses);
-            uni.showToast({ title: '删除成功！', icon: 'success' });
+            var index = _this3.addresses.findIndex(function (item) {return item.id == id;});
+            var _addresses = JSON.parse(JSON.stringify(_this3.addresses));
+            _addresses.splice(index, 1);
+            _this3.SET_ADDRESSES(_addresses);
+            uni.showToast({
+              title: '删除成功！',
+              icon: 'success' });
+
           }
         } });
 

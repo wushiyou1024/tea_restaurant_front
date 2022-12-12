@@ -577,7 +577,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
 
       if (!this.isLogin) {
         uni.navigateTo({
-          url: '/pages/login/login' });
+          url: '/pages/login/index' });
 
         return;
       }
@@ -803,7 +803,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
     toPay: function toPay() {
       if (!this.isLogin) {
         uni.navigateTo({
-          url: '/pages/login/login' });
+          url: '/pages/login/index' });
 
         return;
       }

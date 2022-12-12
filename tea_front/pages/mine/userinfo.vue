@@ -39,6 +39,7 @@
 
 <script>
 	import listCell from '@/components/list-cell/list-cell'
+	import {mapMutations} from 'vuex'
 	
 	export default {
 		components: {
@@ -55,10 +56,12 @@
 		 
 		},
 		onLoad() {
+			
 			this.getUser();
 		
 		},
 		methods: {
+					...mapMutations(['SET_MEMBER']),
 			async getUser(){
 				 const res= await	this.$myRequet({
 				 		url: '/user/getUser',
@@ -69,6 +72,7 @@
 				 	});
 				 	
 					this.member=res.data.data;
+						this.SET_MEMBER(this.member)
 					console.log(this.member)
 			 },
 			save() {
