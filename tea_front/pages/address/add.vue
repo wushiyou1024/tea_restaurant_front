@@ -128,7 +128,7 @@
 						url: '/addressBook',
 						method: 'post',
 						data: {
-							id: this.form.id,
+						
 							consignee: this.form.consignee,
 							sex: this.form.sex,
 							phone: this.form.phone,

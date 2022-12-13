@@ -37,7 +37,7 @@
 												<el-table-column prop="name" label="名称" width="180" align="center">
 												</el-table-column>
 												<el-table-column prop="price" label="原价" width="180">
-													<template slot-scope="scope"> {{ Number(scope.row.price) / 100 }}
+													<template slot-scope="scope"> {{ Number(scope.row.price)  }}
 													</template>
 												</el-table-column>
 												<el-table-column prop="address" label="份数" align="center">
@@ -120,7 +120,7 @@
 											style="display: flex;width: 220px;">
 											<span style="width: 80%;text-align: left;">{{ item.dishName }}</span>
 											<span style=" width: 10%;text-align: right;">{{ item.status == 0 ? '停售' : '在售' }}</span>
-											<span style="width: 10%;text-align: right;">{{ Number(item.price)/100 }}</span>
+											<span style="width: 10%;text-align: right;">{{ Number(item.price) }}</span>
 										</div>
 									</el-checkbox>
 								</div>
@@ -135,7 +135,7 @@
 					<div class="items">
 						<div v-for="(item, ind) in checkedList" :key="ind" class="item">
 							<span>{{ item.name }}</span>
-							<span class="price">￥ {{ Number(item.price)/100 }} </span>
+							<span class="price">￥ {{ Number(item.price) }} </span>
 							<span class="del" @click="delCheck(ind)">
 								<img src="../../assets/icon/btn_clean@2x.png" alt="">
 							</span>
@@ -271,7 +271,7 @@
 					if (String(res.data.code) === '1') {
 						this.ruleForm = res.data.data
 						this.ruleForm.status = res.data.data.status === '1'
-						this.ruleForm.price = res.data.data.price / 100
+						this.ruleForm.price = res.data.data.price 
 						this.imageUrl = `/api/common/download?name=${res.data.data.image}`
 						this.checkList = res.data.data.setmealDishes
 						console.log("**********************************")
@@ -348,7 +348,7 @@
 						let prams = {
 							...this.ruleForm
 						}
-						prams.price *= 100
+						// prams.price *= 100
 						prams.setmealDishes = this.dishTable.map((obj) => ({
 							copies: obj.copies,
 							dishId: obj.dishId,

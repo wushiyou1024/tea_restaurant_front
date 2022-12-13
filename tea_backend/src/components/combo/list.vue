@@ -31,7 +31,7 @@
 				<el-table-column prop="categoryName" label="套餐分类"></el-table-column>
 				<el-table-column prop="price" label="套餐价">
 					<template slot-scope="scope">
-						<span>￥{{ scope.row.price/100 }}</span>
+						<span>￥{{ scope.row.price}}</span>
 					</template>
 				</el-table-column>
 				<el-table-column label="售卖状态">

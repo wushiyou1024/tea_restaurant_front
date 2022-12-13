@@ -46,7 +46,7 @@
 						<view class="menu" :id="`menu-${item.id}`" :class="{'current': item.id == currentCateId}"
 							v-for="(item, index) in indexCategory" :key="index" @tap="handleMenuTap(item.id,item.type)">
 							<text>{{ item.name }}</text>
-							<view class="dot" v-show="menuCartNum(item.id)">{{ menuCartNum(item.id) }}</view>
+							<!-- <view class="dot" v-show="menuCartNum(item.id)">{{ menuCartNum(item.id) }}</view> -->
 						</view>
 					</view>
 				</scroll-view>
@@ -76,24 +76,24 @@
 											<text class="name">{{ item.name }}</text>
 											<text class="tips">{{ item.description }}</text>
 											<view class="price_and_action">
-												<text class="price">￥{{ item.price/100 }}</text>
+												<text class="price">￥{{ item.price}}</text>
 												<view class="btn-group" v-if="item.flavors && item.flavors.length!=0">
 													<button type="primary" class="btn property_btn" hover-class="none"
 														size="mini" @tap="showGoodDetailModal(item, good)">
 														选规格
 													</button>
-													<view class="dot" v-show="goodCartNum(good.id)">
-														{{ goodCartNum(good.id) }}
+													<view class="dot" v-show="goodCartNum(item.id)">
+														{{ goodCartNum(item.id) }}
 													</view>
 												</view>
 												<view class="btn-group" v-else>
-													<button type="default" v-show="goodCartNum(good.id)" plain
+													<button type="default" v-show="goodCartNum(item.id)" plain
 														class="btn reduce_btn" size="mini" hover-class="none"
 														@tap="handleReduceFromCart(item, good)">
 														<view class="iconfont iconsami-select"></view>
 													</button>
-													<view class="number" v-show="goodCartNum(good.id)">
-														{{ goodCartNum(good.id) }}
+													<view class="number" v-show="goodCartNum(item.id)">
+														{{ goodCartNum(item.id) }}
 													</view>
 													<button type="primary" class="btn add_btn" size="min"
 														hover-class="none" @tap="handleAddToCart(item, item, 1)">
@@ -162,7 +162,7 @@
 			</scroll-view>
 			<view class="action">
 				<view class="left">
-					<view class="price">￥{{ good.price/100 }}</view>
+					<view class="price">￥{{ good.price}}</view>
 					<view class="props">
 						{{ getGoodSelectedProps(good) }}
 					</view>
@@ -193,10 +193,10 @@
 						<view class="item" v-for="(item, index) in cart" :key="index">
 							<view class="left">
 								<view class="name">{{ item.name }}</view>
-								<view class="props">{{ item.props_text }}</view>
+								<view class="props">{{ item.dishFlavor }}</view>
 							</view>
 							<view class="center">
-								<text>￥{{ item.price/100 }}</text>
+								<text>￥{{ item.amount }}</text>
 							</view>
 							<view class="right">
 								<button type="default" plain size="mini" class="btn" hover-class="none"
@@ -291,17 +291,28 @@
 
 			}
 		},
+
 		async onLoad() {
 			await this.init()
+
+		},
+		onShow() {
+
+			this.getCart()
+
 		},
 		computed: {
 
-
+			...mapState(['member']),
 			...mapState(['orderType', 'address', 'store']),
 			...mapGetters(['isLogin']),
-			goodCartNum() { //计算单个饮品添加到购物车的数量
+			goodCartNum() {
+				// console.log(this.cart)
+
+				//计算单个饮品添加到购物车的数量
 				return (id) => this.cart.reduce((acc, cur) => {
-					if (cur.id === id) {
+					// console.log(id)
+					if (cur.dishId === id) {
 						return acc += cur.number
 					}
 					return acc
@@ -319,7 +330,7 @@
 				return this.cart.reduce((acc, cur) => acc + cur.number, 0)
 			},
 			getCartGoodsPrice() { //计算购物车总价
-				return this.cart.reduce((acc, cur) => acc + cur.number * (cur.price/100), 0)
+				return this.cart.reduce((acc, cur) => acc + cur.number * (cur.amount), 0)
 			},
 			disabledPay() { //是否达到起送价
 				return this.orderType == 'takeout' && (this.getCartGoodsPrice < this.store.min_price) ? true : false
@@ -332,6 +343,23 @@
 		methods: {
 			...mapMutations(['SET_ORDER_TYPE']),
 			...mapActions(['getStore']),
+
+
+			async getCart() {
+				const res = await this.$myRequet({
+					url: '/shoppingCart/list',
+					method: 'get',
+					data: {
+						userid: this.member.customerId
+					}
+				})
+				if (res.data.code == 1) {
+					this.cart = res.data.data
+				}
+
+				console.log(this.cart)
+			},
+
 			async init() { //页面初始化
 				this.loading = true
 				await this.getStore()
@@ -345,10 +373,12 @@
 				})
 				this.indexCategory = [...this.indexCategory, ...res.data.data]
 
-				console.log(res.data.data)
+				// console.log(res.data.data)
 				this.goods = await this.$api('goods')
 				this.loading = false
-				this.cart = uni.getStorageSync('cart') || []
+
+				// this.cart = uni.getStorageSync('cart') || []
+				// console.log(this.cart);
 			},
 			takout() {
 				if (this.orderType == 'takeout') return
@@ -385,7 +415,9 @@
 					url: '/setmeal/list?categoryId=' + id + '&status=1',
 					method: 'get'
 				})
+
 				this.currentGoods = res.data.data;
+
 			},
 			async getGoodsByCategory(id) {
 
@@ -393,6 +425,7 @@
 				const res = await this.$myRequet({
 					url: '/dish/list?categoryId=' + id + '&status=1'
 				})
+
 				this.currentGoods = res.data.data;
 			},
 			handleGoodsScroll({
@@ -410,28 +443,37 @@
 				}
 			},
 			calcSize() {
-				let h = 10
+				// let h = 10
 
-				let view = uni.createSelectorQuery().select('#ads')
-				view.fields({
-					size: true
-				}, data => {
-					h += Math.floor(data.height)
-				}).exec()
+				// let view = uni.createSelectorQuery().select('#ads')
+				// view.fields({
+				// 	size: true
+				// }, data => {
+				// 	h += Math.floor(data.height)
+				// }).exec()
 
-				this.goods.forEach(item => {
-					let view = uni.createSelectorQuery().select(`#cate-${item.id}`)
-					view.fields({
-						size: true
-					}, data => {
-						item.top = h
-						h += data.height
-						item.bottom = h
-					}).exec()
-				})
-				this.sizeCalcState = true
+				// this.goods.forEach(item => {
+				// 	let view = uni.createSelectorQuery().select(`#cate-${item.id}`)
+				// 	view.fields({
+				// 		size: true
+				// 	}, data => {
+				// 		item.top = h
+				// 		h += data.height
+				// 		item.bottom = h
+				// 	}).exec()
+				// })
+				// this.sizeCalcState = true
 			},
-			handleAddToCart(cate, good, num) { //添加到购物车
+			async handleAddToCart(cate, good, num) { //添加到购物车
+				// console.log("----------------------")
+
+				if (!this.isLogin) {
+					uni.navigateTo({
+						url: '/pages/login/index'
+					})
+					return
+				}
+				console.log(good)
 				const index = this.cart.findIndex(item => {
 					if (good.use_property) {
 						return (item.id === good.id) && (item.props_text === good.props_text)
@@ -442,17 +484,58 @@
 				if (index > -1) {
 					this.cart[index].number += num
 				} else {
-					this.cart.push({
-						id: good.id,
-						cate_id: cate.id,
-						name: good.name,
-						price: good.price,
-						number: num,
-						image: good.images,
-						use_property: good.use_property,
-						props_text: good.props_text,
-						props: good.props
+					// this.cart.push({
+					// 	id: good.id,
+					// 	cate_id: cate.id,
+					// 	name: good.name,
+					// 	price: good.price,
+					// 	number: num,
+					// 	image: good.images,
+					// 	use_property: good.use_property,
+					// 	props_text: good.props_text,
+					// 	props: good.props
+					// })
+
+					const res = await this.$myRequet({
+						url: '/shoppingCart/add',
+						method: 'post',
+						data: {
+							name: good.name,
+							image: good.image,
+							userId: this.member.customerId,
+							dishId: good.id,
+
+							dishFlavor: good.props_text,
+							number: num,
+							amount: good.price
+						}
 					})
+					// console.log(res.data)
+					if (res.data.code == 1) {
+
+						var flag = 1;
+						for (var i = 0; i < this.cart.length; i++) {
+							if ((this.cart[i].dishId == good.id) || (this.cart[i].setmealId == good.id)) {
+								this.cart[i].number = this.cart[i].number + 1;
+								flag = 0;
+								break;
+							}
+						}
+						if (flag == 1) {
+							this.cart.push({
+						 	name: good.name,
+								image: good.image,
+								userId: this.member.customerId,
+								dishId: good.id,
+
+								dishFlavor: good.props_text,
+								number: num,
+								amount: good.price
+							})
+						}
+						// console.log("success")
+					}
+					// console.log(this.cart)
 				}
 			},
 			handleReduceFromCart(item, good) {
@@ -468,8 +551,8 @@
 					...item,
 					number: 1
 				}))
-				console.log("初始化了good")
-				console.log(this.good)
+				// console.log("初始化了good")
+				// console.log(this.good)
 				for (var i = 0; i < this.good.flavors.length; i++) {
 					var arr = JSON.parse(this.good.flavors[i].value)
 
@@ -499,7 +582,7 @@
 			},
 			changePropertyDefault(index, key) { //改变默认属性值
 				this.good.flavors[index].values.forEach(value => this.$set(value, 'is_default', 0))
-				console.log(this.good)
+				// console.log(this.good)
 				// console.log(good.property)
 				this.good.flavors[index].values[key].is_default = 1
 				this.good.number = 1
@@ -517,7 +600,7 @@
 			},
 			getGoodSelectedProps(good, type = 'text') { //计算当前饮品所选属性
 				if (good.flavors) {
-					console.log(good.flavors)
+					// console.log(good.flavors)
 					let props = []
 					good.flavors.forEach(({
 						values
@@ -530,7 +613,7 @@
 					})
 					return type === 'text' ? props.join('，') : props
 				}
-				console.log("000000000000")
+				// console.log("000000000000")
 				return ''
 			},
 			handlePropertyAdd() {
@@ -545,6 +628,7 @@
 					props_text: this.getGoodSelectedProps(this.good),
 					props: this.getGoodSelectedProps(this.good, 'id')
 				})
+
 				this.handleAddToCart(this.category, product, this.good.number)
 				this.closeGoodDetailModal()
 			},
@@ -559,7 +643,16 @@
 						confirm
 					}) => {
 						if (confirm) {
+
 							this.cartPopupVisible = false
+							// console.log(this.member.customerId)
+							this.$myRequet({
+								url: '/shoppingCart/clean',
+								method: 'DELETE',
+								data: {
+									userId: this.member.customerId
+								}
+							})
 							this.cart = []
 						}
 					}

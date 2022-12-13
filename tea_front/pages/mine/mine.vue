@@ -7,11 +7,11 @@
 				<text>会员码</text>
 			</button>
 		</view>
-		
+
 		<view style="padding: 0 30rpx;">
 			<!-- user box begin -->
 			<view class="d-flex flex-column bg-white user-box">
-				
+
 				<view class="d-flex align-items-center">
 					<view class="avatar">
 						<image :src="isLogin ? member.avatar : '/static/images/mine/default.png'"></image>
@@ -21,7 +21,8 @@
 						</view>
 					</view>
 					<view class="d-flex flex-column flex-fill overflow-hidden" style="margin-top: 20rpx;">
-						<view v-if="isLogin" class="font-size-lg font-weight-bold d-flex justify-content-start align-items-center"
+						<view v-if="isLogin"
+							class="font-size-lg font-weight-bold d-flex justify-content-start align-items-center"
 							@tap="userinfo">
 							<view class="text-truncate">{{ member.nickname }}</view>
 							<view class="iconfont iconarrow-right line-height-100"></view>
@@ -31,12 +32,14 @@
 							当前成长值{{ isLogin ? member.currentValue : 0 }}/{{ isLogin ? member.currentValue + member.needValue : 0 }}
 						</view>
 						<view class="w-100">
-							 <progress percent="0" activeColor="#ADB838" height="8rpx" :percent="growthValue" border-radius="8rpx"/>
+							<progress percent="0" activeColor="#ADB838" height="8rpx" :percent="growthValue"
+								border-radius="8rpx" />
 						</view>
 					</view>
-					
-					
-					<view class="level-benefit d-flex flex-shrink-0 align-items-center justify-content-end text-color-white bg-warning font-size-sm">
+
+
+					<view
+						class="level-benefit d-flex flex-shrink-0 align-items-center justify-content-end text-color-white bg-warning font-size-sm">
 						<view>会员权益</view>
 						<view class="iconfont iconarrow-right line-height-100"></view>
 					</view>
@@ -45,25 +48,25 @@
 				<view class="w-100 d-flex align-items-center just-content-center">
 					<view class="user-grid" @tap="coupons">
 						<view class="value font-size-extra-lg font-weight-bold text-color-base">
-							{{  isLogin ? member.couponNum : '***' }}
+							{{ isLogin ? member.couponNum : '***' }}
 						</view>
 						<view class="font-size-sm text-color-assist">奈雪券</view>
 					</view>
 					<view class="user-grid" @tap="integrals">
 						<view class="value font-size-extra-lg font-weight-bold text-color-base">
-							{{  isLogin ? member.pointNum : '***' }}
+							{{ isLogin ? member.pointNum : '***' }}
 						</view>
 						<view class="font-size-sm text-color-assist">积分商城</view>
 					</view>
 					<view class="user-grid" @tap="balance">
 						<view class="value font-size-extra-lg font-weight-bold text-color-base">
-							{{  isLogin ? member.balance : '***' }}
+							{{ isLogin ? member.balance : '***' }}
 						</view>
 						<view class="font-size-sm text-color-assist">余额</view>
 					</view>
 					<view class="user-grid" @tap="giftCards">
 						<view class="value font-size-extra-lg font-weight-bold text-color-base">
-							{{  isLogin ? member.giftBalance : '***' }}
+							{{ isLogin ? member.giftBalance : '***' }}
 						</view>
 						<view class="font-size-sm text-color-assist">礼品卡</view>
 					</view>
@@ -162,7 +165,8 @@
 		</view>
 		<!-- service box end -->
 		<!-- tips begin -->
-		<view class="d-flex just-content-center align-items-center text-color-assist" style="padding: 30rpx 0; font-size: 22rpx;">
+		<view class="d-flex just-content-center align-items-center text-color-assist"
+			style="padding: 30rpx 0; font-size: 22rpx;">
 			会员卡适用于厦理茶餐厅指定范围
 		</view>
 		<!-- tisps end -->
@@ -170,7 +174,10 @@
 </template>
 
 <script>
-	import {mapState, mapGetters} from 'vuex'
+	import {
+		mapState,
+		mapGetters
+	} from 'vuex'
 	export default {
 		data() {
 			return {
@@ -181,13 +188,15 @@
 			...mapState(['member']),
 			...mapGetters(['isLogin']),
 			growthValue() {
-				if(!this.isLogin) return 0
-				const {currentValue, needValue} = this.member
+				if (!this.isLogin) return 0
+				const {
+					currentValue,
+					needValue
+				} = this.member
 				return currentValue / (currentValue + needValue) * 100
 			}
 		},
-		onLoad() {
-		},
+		onLoad() {},
 		methods: {
 			login() {
 				uni.navigateTo({
@@ -195,7 +204,7 @@
 				})
 			},
 			packages() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -204,7 +213,7 @@
 				})
 			},
 			balance() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -213,7 +222,7 @@
 				})
 			},
 			addresses() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -222,7 +231,7 @@
 				})
 			},
 			integrals() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -231,7 +240,7 @@
 				})
 			},
 			attendance() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -240,7 +249,7 @@
 				})
 			},
 			orders() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -249,7 +258,7 @@
 				})
 			},
 			memberCode() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -258,7 +267,7 @@
 				})
 			},
 			coupons() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -267,7 +276,7 @@
 				})
 			},
 			userinfo() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -281,7 +290,7 @@
 				})
 			},
 			giftCards() {
-				if(!this.isLogin) {
+				if (!this.isLogin) {
 					this.login()
 					return
 				}
@@ -294,183 +303,184 @@
 </script>
 
 <style lang="scss" scoped>
-page {
-	height: auto;
-	min-height: 100%;
-}	
-
-.bg {
-	width: 100%;
-	height: calc(410 / 594 * 750rpx);
-}
-
-.hym-btn {
-	position: absolute;
-	top: 40rpx;
-	right: 40rpx;
-	color: $color-primary;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	border-radius: 50rem;
-	font-size: $font-size-sm;
-	box-shadow: 0 0 20rpx rgba(66,66,66,0.1);
-	&::after {
-		border: 0;
+	page {
+		height: auto;
+		min-height: 100%;
 	}
-	
-	image {
-		width: 30rpx;
-		height: 30rpx;
-		margin-right: 10rpx;
-	}
-}
 
-.user-box {
-	position: relative;
-	border-radius: 8rpx; 
-	margin-bottom: 30rpx;
-	margin-top: -115rpx;
-	box-shadow: $box-shadow;
-}
-
-.avatar {
-	position: relative;
-	margin-top: -35rpx;
-	margin-left: 35rpx;
-	margin-right: 35rpx;
-	width: 160rpx;
-	height: 160rpx;
-	border-radius: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background-color: #FFFFFF;
-	box-shadow: 0 0 20rpx rgba($color: #000000, $alpha: 0.2);
-	
-	image {
-		width: 140rpx;
-		height: 140rpx;
-		border-radius: 100%;
+	.bg {
+		width: 100%;
+		height: calc(410 / 594 * 750rpx);
 	}
-	
-	.badge {
+
+	.hym-btn {
 		position: absolute;
-		right: -10rpx;
-		bottom: -10rpx;
-		background-color: #FFFFFF;
-		border-radius: 50rem;
+		top: 40rpx;
+		right: 40rpx;
+		color: $color-primary;
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		color: $color-warning;
-		font-size: 24rpx;
-		padding: 8rpx 16rpx;
-		box-shadow: 0 0 20rpx rgba($color: #000000, $alpha: 0.2);
-		
+		border-radius: 50rem;
+		font-size: $font-size-sm;
+		box-shadow: 0 0 20rpx rgba(66, 66, 66, 0.1);
+
+		&::after {
+			border: 0;
+		}
+
 		image {
 			width: 30rpx;
 			height: 30rpx;
+			margin-right: 10rpx;
 		}
 	}
-}
 
-.level-benefit {
-	margin-left: 35rpx;
-	padding: 10rpx 0 10rpx 30rpx;
-	border-radius: 50rem 0 0 50rem;
-}
-
-.user-grid {
-	width: 25%;
-	padding: 30rpx;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	
-	.value {
-		margin-bottom: 20rpx;
+	.user-box {
+		position: relative;
+		border-radius: 8rpx;
+		margin-bottom: 30rpx;
+		margin-top: -115rpx;
+		box-shadow: $box-shadow;
 	}
-}
 
-.level-benefit-box {
-	border-radius: 8rpx; 
-	margin-bottom: 30rpx;
-	box-shadow: 0 10rpx 8rpx rgba($color: #878889, $alpha: 0.1);
-	width: 100%;
-	display: flex;
-	padding: 30rpx;
-	flex-direction: column;
-	background-color: #FFFFFF;
-	
-	.row {
+	.avatar {
+		position: relative;
+		margin-top: -35rpx;
+		margin-left: 35rpx;
+		margin-right: 35rpx;
+		width: 160rpx;
+		height: 160rpx;
+		border-radius: 100%;
 		display: flex;
-		padding: 30rpx 0 20rpx;
-		justify-content: space-around;
 		align-items: center;
-		
-		.grid {
-			width: 20%;
+		justify-content: center;
+		background-color: #FFFFFF;
+		box-shadow: 0 0 20rpx rgba($color: #000000, $alpha: 0.2);
+
+		image {
+			width: 140rpx;
+			height: 140rpx;
+			border-radius: 100%;
+		}
+
+		.badge {
+			position: absolute;
+			right: -10rpx;
+			bottom: -10rpx;
+			background-color: #FFFFFF;
+			border-radius: 50rem;
 			display: flex;
-			flex-direction: column;
-			font-size: $font-size-sm;
-			color: $text-color-assist;
 			align-items: center;
+			justify-content: center;
+			color: $color-warning;
+			font-size: 24rpx;
+			padding: 8rpx 16rpx;
+			box-shadow: 0 0 20rpx rgba($color: #000000, $alpha: 0.2);
 
 			image {
-				width: 80rpx;
-				height: 80rpx;
-				margin-bottom: 10rpx;
+				width: 30rpx;
+				height: 30rpx;
 			}
 		}
 	}
-}
 
-.banner {
-	width: 100%;
-	border-radius: 8rpx;
-	margin-bottom: 30rpx;
-}
+	.level-benefit {
+		margin-left: 35rpx;
+		padding: 10rpx 0 10rpx 30rpx;
+		border-radius: 50rem 0 0 50rem;
+	}
 
-.service-box {
-	width: 100%;
-	background-color: #FFFFFF;
-	padding: 32rpx 30rpx 10rpx;
-	box-shadow: $box-shadow;
-	
-	.row {
+	.user-grid {
+		width: 25%;
+		padding: 30rpx;
 		display: flex;
-		flex-wrap: wrap;
-		color: $text-color-assist;
-		font-size: $font-size-sm;
-		padding-bottom: -40rpx;
-		
-		.grid {
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+
+		.value {
+			margin-bottom: 20rpx;
+		}
+	}
+
+	.level-benefit-box {
+		border-radius: 8rpx;
+		margin-bottom: 30rpx;
+		box-shadow: 0 10rpx 8rpx rgba($color: #878889, $alpha: 0.1);
+		width: 100%;
+		display: flex;
+		padding: 30rpx;
+		flex-direction: column;
+		background-color: #FFFFFF;
+
+		.row {
 			display: flex;
-			flex-direction: column;
-			justify-content: center;
+			padding: 30rpx 0 20rpx;
+			justify-content: space-around;
 			align-items: center;
-			margin-bottom: 40rpx;
-			width: 25%;
-			position: relative;
-			
-			.image {
+
+			.grid {
+				width: 20%;
+				display: flex;
+				flex-direction: column;
+				font-size: $font-size-sm;
+				color: $text-color-assist;
+				align-items: center;
+
 				image {
 					width: 80rpx;
 					height: 80rpx;
-					margin-bottom: 20rpx;
+					margin-bottom: 10rpx;
 				}
-			}
-			
-			.new-badage {
-				width: 40rpx;
-				height: 40rpx;
-				position: absolute;
-				top: 0;
-				right: 30rpx;
 			}
 		}
 	}
-}
+
+	.banner {
+		width: 100%;
+		border-radius: 8rpx;
+		margin-bottom: 30rpx;
+	}
+
+	.service-box {
+		width: 100%;
+		background-color: #FFFFFF;
+		padding: 32rpx 30rpx 10rpx;
+		box-shadow: $box-shadow;
+
+		.row {
+			display: flex;
+			flex-wrap: wrap;
+			color: $text-color-assist;
+			font-size: $font-size-sm;
+			padding-bottom: -40rpx;
+
+			.grid {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin-bottom: 40rpx;
+				width: 25%;
+				position: relative;
+
+				.image {
+					image {
+						width: 80rpx;
+						height: 80rpx;
+						margin-bottom: 20rpx;
+					}
+				}
+
+				.new-badage {
+					width: 40rpx;
+					height: 40rpx;
+					position: absolute;
+					top: 0;
+					right: 30rpx;
+				}
+			}
+		}
+	}
 </style>

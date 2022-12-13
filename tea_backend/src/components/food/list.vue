@@ -31,7 +31,7 @@
 				<el-table-column prop="categoryName" label="菜品分类"></el-table-column>
 				<el-table-column label="售价">
 					<template slot-scope="scope">
-						<span style="margin-right: 10px;">￥{{ scope.row.price/100 }}</span>
+						<span style="margin-right: 10px;">￥{{ scope.row.price }}</span>
 					</template>
 				</el-table-column>
 				<el-table-column label="售卖状态">

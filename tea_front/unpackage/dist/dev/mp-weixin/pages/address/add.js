@@ -294,7 +294,7 @@ __webpack_require__.r(__webpack_exports__);
                     url: '/addressBook',
                     method: 'post',
                     data: {
-                      id: _this3.form.id,
+
                       consignee: _this3.form.consignee,
                       sex: _this3.form.sex,
                       phone: _this3.form.phone,

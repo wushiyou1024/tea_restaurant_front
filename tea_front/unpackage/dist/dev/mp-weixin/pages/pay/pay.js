@@ -133,6 +133,7 @@ var render = function() {
     _vm.orderType == "takeout" && _vm.store.delivery_cost > 0
       ? parseFloat(_vm.store.delivery_cost)
       : null
+  var m2 = parseFloat(_vm.total)
 
   if (!_vm._isMounted) {
     _vm.e0 = function($event) {
@@ -145,7 +146,8 @@ var render = function() {
     {
       $root: {
         m0: m0,
-        m1: m1
+        m1: m1,
+        m2: m2
       }
     }
   )
@@ -182,7 +184,12 @@ __webpack_require__.r(__webpack_exports__);
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _regenerator = _interopRequireDefault(__webpack_require__(/*! ./node_modules/@babel/runtime/regenerator */ 30));
+
+
+
+
+
 
 
 
@@ -371,7 +378,10 @@ __webpack_require__.r(__webpack_exports__);
 var _vuex = __webpack_require__(/*! vuex */ 33);
 
 
-var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var listCell = function listCell() {__webpack_require__.e(/*! require.ensure | components/list-cell/list-cell */ "components/list-cell/list-cell").then((function () {return resolve(__webpack_require__(/*! @/components/list-cell/list-cell */ 167));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var modal = function modal() {__webpack_require__.e(/*! require.ensure | components/modal/modal */ "components/modal/modal").then((function () {return resolve(__webpack_require__(/*! @/components/modal/modal */ 153));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
+
+
+
+var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {try {var info = gen[key](arg);var value = info.value;} catch (error) {reject(error);return;}if (info.done) {resolve(value);} else {Promise.resolve(value).then(_next, _throw);}}function _asyncToGenerator(fn) {return function () {var self = this,args = arguments;return new Promise(function (resolve, reject) {var gen = fn.apply(self, args);function _next(value) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);}function _throw(err) {asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);}_next(undefined);});};}function ownKeys(object, enumerableOnly) {var keys = Object.keys(object);if (Object.getOwnPropertySymbols) {var symbols = Object.getOwnPropertySymbols(object);if (enumerableOnly) symbols = symbols.filter(function (sym) {return Object.getOwnPropertyDescriptor(object, sym).enumerable;});keys.push.apply(keys, symbols);}return keys;}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};if (i % 2) {ownKeys(Object(source), true).forEach(function (key) {_defineProperty(target, key, source[key]);});} else if (Object.getOwnPropertyDescriptors) {Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));} else {ownKeys(Object(source)).forEach(function (key) {Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));});}}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}var listCell = function listCell() {__webpack_require__.e(/*! require.ensure | components/list-cell/list-cell */ "components/list-cell/list-cell").then((function () {return resolve(__webpack_require__(/*! @/components/list-cell/list-cell */ 167));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var modal = function modal() {__webpack_require__.e(/*! require.ensure | components/modal/modal */ "components/modal/modal").then((function () {return resolve(__webpack_require__(/*! @/components/modal/modal */ 153));}).bind(null, __webpack_require__)).catch(__webpack_require__.oe);};var _default =
 
 {
   components: {
@@ -380,26 +390,37 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
 
   data: function data() {
     return {
+
       cart: [],
       form: {
-        remark: '' },
+        remark: '',
+        phone: '' },
+
 
       ensureAddressModalVisible: false };
 
   },
-  computed: _objectSpread(_objectSpread({},
+  computed: _objectSpread(_objectSpread(_objectSpread({},
+  (0, _vuex.mapState)(['member'])),
+
   (0, _vuex.mapState)(['orderType', 'address', 'store'])), {}, {
     total: function total() {
-      return this.cart.reduce(function (acc, cur) {return acc + cur.number * cur.price;}, 0);
+      return this.cart.reduce(function (acc, cur) {return acc + cur.number * cur.amount;}, 0);
     },
     amount: function amount() {
-      return this.cart.reduce(function (acc, cur) {return acc + cur.number * cur.price;}, 0);
+      return this.cart.reduce(function (acc, cur) {return acc + cur.number * cur.amount;}, 0);
     } }),
 
   onLoad: function onLoad(option) {var
-    remark = option.remark;
+
+    remark =
+    option.remark;
     this.cart = uni.getStorageSync('cart');
     remark && this.$set(this.form, 'remark', remark);
+    this.form.phone = this.member.mobilePhone;
+    // console.log(this.address.detail)
+
+
   },
   methods: _objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(['SET_ORDER'])), {}, {
@@ -419,23 +440,74 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
 
     },
     submit: function submit() {
+      // console.log(address)
       if (this.orderType == 'takeout') {
         this.ensureAddressModalVisible = true;
       } else {
-        this.pay();
+        this.pay(1);
       }
     },
-    pay: function pay() {
-      uni.showLoading({ title: '加载中' });
-      //测试订单
-      var order = this.orderType == 'takein' ? _orders.default[0] : _orders.default[1];
-      order = Object.assign(order, { status: 1 });
-      this.SET_ORDER(order);
-      uni.removeStorageSync('cart');
-      uni.reLaunch({
-        url: '/pages/take-foods/take-foods' });
+    pay: function pay(type) {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var res, _res;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:
+                console.log(type);
+                uni.showLoading({
+                  title: '加载中' });if (!(
 
-      uni.hideLoading();
+
+                type == 1)) {_context.next = 9;break;}_context.next = 5;return (
+
+                  _this.$myRequet({
+                    url: '/order/submit',
+                    method: 'post',
+                    data: {
+                      userId: _this.member.customerId,
+                      // addressBookId:
+                      remark: 'self',
+                      phone: _this.form.phone } }));case 5:res = _context.sent;
+
+
+                if (res.data.code == 1) {
+                  uni.removeStorageSync('cart');
+                  uni.reLaunch({
+                    url: '/pages/take-foods/take-foods' });
+
+                  uni.hideLoading();
+                }_context.next = 15;break;case 9:
+
+                console.log("**-*-*-*-*-*-*");
+                console.log(_this.address);
+                //意味着这是外卖单子
+                _context.next = 13;return _this.$myRequet({
+                  url: '/order/submit',
+                  method: 'post',
+                  data: {
+                    userId: _this.member.customerId,
+                    // addressBookId:
+                    addressBookId: _this.address.id } });case 13:_res = _context.sent;
+
+
+
+                if (_res.data.code == 1) {
+                  uni.removeStorageSync('cart');
+                  uni.reLaunch({
+                    url: '/pages/take-foods/take-foods' });
+
+                  uni.hideLoading();
+                }case 15:case "end":return _context.stop();}}}, _callee);}))();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))
 

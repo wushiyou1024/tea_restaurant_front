@@ -227,7 +227,7 @@
 						this.ruleForm = {
 							...res.data.data
 						}
-						this.ruleForm.price = String(res.data.data.price / 100)
+						this.ruleForm.price = String(res.data.data.price )
 						this.ruleForm.status = res.data.data.status == '1'
 						this.dishFlavors = res.data.data.flavors && res.data.data.flavors.map(obj => ({
 							...obj,
@@ -361,7 +361,7 @@
 						}
 						// params.flavors = this.dishFlavors
 						params.status = this.ruleForm ? 1 : 0
-						params.price *= 100
+						// params.price *= 100
 						params.categoryId = this.ruleForm.categoryId
 						params.flavors = this.dishFlavors.map(obj => ({
 							...obj,

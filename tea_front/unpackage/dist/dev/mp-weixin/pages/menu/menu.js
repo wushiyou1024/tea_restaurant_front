@@ -127,52 +127,38 @@ var render = function() {
   var _c = _vm._self._c || _h
   var l0 =
     !_vm.loading && _vm.goods.length
-      ? _vm.__map(_vm.indexCategory, function(item, index) {
-          var $orig = _vm.__get_orig(item)
-
-          var m0 = _vm.menuCartNum(item.id)
-          var m1 = _vm.menuCartNum(item.id)
-          return {
-            $orig: $orig,
-            m0: m0,
-            m1: m1
-          }
-        })
-      : null
-  var l1 =
-    !_vm.loading && _vm.goods.length
       ? _vm.__map(_vm.currentGoods, function(item, index) {
           var $orig = _vm.__get_orig(item)
 
-          var m2 =
+          var m0 =
             item.flavors && item.flavors.length != 0
-              ? _vm.goodCartNum(_vm.good.id)
+              ? _vm.goodCartNum(item.id)
               : null
-          var m3 =
+          var m1 =
             item.flavors && item.flavors.length != 0
-              ? _vm.goodCartNum(_vm.good.id)
+              ? _vm.goodCartNum(item.id)
               : null
+          var m2 = !(item.flavors && item.flavors.length != 0)
+            ? _vm.goodCartNum(item.id)
+            : null
+          var m3 = !(item.flavors && item.flavors.length != 0)
+            ? _vm.goodCartNum(item.id)
+            : null
           var m4 = !(item.flavors && item.flavors.length != 0)
-            ? _vm.goodCartNum(_vm.good.id)
-            : null
-          var m5 = !(item.flavors && item.flavors.length != 0)
-            ? _vm.goodCartNum(_vm.good.id)
-            : null
-          var m6 = !(item.flavors && item.flavors.length != 0)
-            ? _vm.goodCartNum(_vm.good.id)
+            ? _vm.goodCartNum(item.id)
             : null
           return {
             $orig: $orig,
+            m0: m0,
+            m1: m1,
             m2: m2,
             m3: m3,
-            m4: m4,
-            m5: m5,
-            m6: m6
+            m4: m4
           }
         })
       : null
-  var m7 = !_vm.loading ? _vm.getGoodSelectedProps(_vm.good) : null
-  var m8 =
+  var m5 = !_vm.loading ? _vm.getGoodSelectedProps(_vm.good) : null
+  var m6 =
     !_vm.loading && _vm.orderType == "takeout" && _vm.store.packing_fee
       ? parseFloat(_vm.store.packing_fee)
       : null
@@ -181,9 +167,8 @@ var render = function() {
     {
       $root: {
         l0: l0,
-        l1: l1,
-        m7: m7,
-        m8: m8
+        m5: m5,
+        m6: m6
       }
     }
   )
@@ -513,17 +498,28 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
 
 
   },
+
   onLoad: function onLoad() {var _this = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:_context.next = 2;return (
                 _this.init());case 2:case "end":return _context.stop();}}}, _callee);}))();
+
   },
-  computed: _objectSpread(_objectSpread(_objectSpread({},
+  onShow: function onShow() {
 
+    this.getCart();
 
+  },
+  computed: _objectSpread(_objectSpread(_objectSpread(_objectSpread({},
+
+  (0, _vuex.mapState)(['member'])),
   (0, _vuex.mapState)(['orderType', 'address', 'store'])),
   (0, _vuex.mapGetters)(['isLogin'])), {}, {
-    goodCartNum: function goodCartNum() {var _this2 = this; //计算单个饮品添加到购物车的数量
+    goodCartNum: function goodCartNum() {var _this2 = this;
+      // console.log(this.cart)
+
+      //计算单个饮品添加到购物车的数量
       return function (id) {return _this2.cart.reduce(function (acc, cur) {
-          if (cur.id === id) {
+          // console.log(id)
+          if (cur.dishId === id) {
             return acc += cur.number;
           }
           return acc;
@@ -541,7 +537,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
       return this.cart.reduce(function (acc, cur) {return acc + cur.number;}, 0);
     },
     getCartGoodsPrice: function getCartGoodsPrice() {//计算购物车总价
-      return this.cart.reduce(function (acc, cur) {return acc + cur.number * (cur.price / 100);}, 0);
+      return this.cart.reduce(function (acc, cur) {return acc + cur.number * cur.amount;}, 0);
     },
     disabledPay: function disabledPay() {//是否达到起送价
       return this.orderType == 'takeout' && this.getCartGoodsPrice < this.store.min_price ? true : false;
@@ -554,24 +550,43 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
   methods: _objectSpread(_objectSpread(_objectSpread({},
   (0, _vuex.mapMutations)(['SET_ORDER_TYPE'])),
   (0, _vuex.mapActions)(['getStore'])), {}, {
-    init: function init() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var id, res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0: //页面初始化
-                _this4.loading = true;_context2.next = 3;return (
-                  _this4.getStore());case 3:
-                id = '1397844263642378242';_context2.next = 6;return (
 
-                  _this4.getGoodsByCategory(id));case 6:_context2.next = 8;return (
 
+    getCart: function getCart() {var _this4 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee2() {var res;return _regenerator.default.wrap(function _callee2$(_context2) {while (1) {switch (_context2.prev = _context2.next) {case 0:_context2.next = 2;return (
                   _this4.$myRequet({
-                    url: '/category/list',
-                    method: 'get' }));case 8:res = _context2.sent;
+                    url: '/shoppingCart/list',
+                    method: 'get',
+                    data: {
+                      userid: _this4.member.customerId } }));case 2:res = _context2.sent;
 
-                _this4.indexCategory = [].concat(_toConsumableArray(_this4.indexCategory), _toConsumableArray(res.data.data));
 
-                console.log(res.data.data);_context2.next = 13;return (
-                  _this4.$api('goods'));case 13:_this4.goods = _context2.sent;
-                _this4.loading = false;
-                _this4.cart = uni.getStorageSync('cart') || [];case 16:case "end":return _context2.stop();}}}, _callee2);}))();
+                if (res.data.code == 1) {
+                  _this4.cart = res.data.data;
+                }
+
+                console.log(_this4.cart);case 5:case "end":return _context2.stop();}}}, _callee2);}))();
     },
+
+    init: function init() {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var id, res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0: //页面初始化
+                _this5.loading = true;_context3.next = 3;return (
+                  _this5.getStore());case 3:
+                id = '1397844263642378242';_context3.next = 6;return (
+
+                  _this5.getGoodsByCategory(id));case 6:_context3.next = 8;return (
+
+                  _this5.$myRequet({
+                    url: '/category/list',
+                    method: 'get' }));case 8:res = _context3.sent;
+
+                _this5.indexCategory = [].concat(_toConsumableArray(_this5.indexCategory), _toConsumableArray(res.data.data));
+
+                // console.log(res.data.data)
+                _context3.next = 12;return _this5.$api('goods');case 12:_this5.goods = _context3.sent;
+                _this5.loading = false;
+
+                // this.cart = uni.getStorageSync('cart') || []
+                // console.log(this.cart);
+              case 14:case "end":return _context3.stop();}}}, _callee3);}))();},
     takout: function takout() {
       if (this.orderType == 'takeout') return;
 
@@ -600,22 +615,25 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
 
       // this.$nextTick(() => this.cateScrollTop = this.goods.find(item => item.id == id).top)
     },
-    getsetmealByCategory: function getsetmealByCategory(id) {var _this5 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee3() {var res;return _regenerator.default.wrap(function _callee3$(_context3) {while (1) {switch (_context3.prev = _context3.next) {case 0:_context3.next = 2;return (
-
-
-                  _this5.$myRequet({
-                    url: '/setmeal/list?categoryId=' + id + '&status=1',
-                    method: 'get' }));case 2:res = _context3.sent;
-
-                _this5.currentGoods = res.data.data;case 4:case "end":return _context3.stop();}}}, _callee3);}))();
-    },
-    getGoodsByCategory: function getGoodsByCategory(id) {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
+    getsetmealByCategory: function getsetmealByCategory(id) {var _this6 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee4() {var res;return _regenerator.default.wrap(function _callee4$(_context4) {while (1) {switch (_context4.prev = _context4.next) {case 0:_context4.next = 2;return (
 
 
                   _this6.$myRequet({
-                    url: '/dish/list?categoryId=' + id + '&status=1' }));case 2:res = _context4.sent;
+                    url: '/setmeal/list?categoryId=' + id + '&status=1',
+                    method: 'get' }));case 2:res = _context4.sent;
+
 
                 _this6.currentGoods = res.data.data;case 4:case "end":return _context4.stop();}}}, _callee4);}))();
+
+    },
+    getGoodsByCategory: function getGoodsByCategory(id) {var _this7 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee5() {var res;return _regenerator.default.wrap(function _callee5$(_context5) {while (1) {switch (_context5.prev = _context5.next) {case 0:_context5.next = 2;return (
+
+
+                  _this7.$myRequet({
+                    url: '/dish/list?categoryId=' + id + '&status=1' }));case 2:res = _context5.sent;
+
+
+                _this7.currentGoods = res.data.data;case 4:case "end":return _context5.stop();}}}, _callee5);}))();
     },
     handleGoodsScroll: function handleGoodsScroll(_ref)
 
@@ -632,50 +650,100 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
       }
     },
     calcSize: function calcSize() {
-      var h = 10;
+      // let h = 10
 
-      var view = uni.createSelectorQuery().select('#ads');
-      view.fields({
-        size: true },
-      function (data) {
-        h += Math.floor(data.height);
-      }).exec();
+      // let view = uni.createSelectorQuery().select('#ads')
+      // view.fields({
+      // 	size: true
+      // }, data => {
+      // 	h += Math.floor(data.height)
+      // }).exec()
 
-      this.goods.forEach(function (item) {
-        var view = uni.createSelectorQuery().select("#cate-".concat(item.id));
-        view.fields({
-          size: true },
-        function (data) {
-          item.top = h;
-          h += data.height;
-          item.bottom = h;
-        }).exec();
-      });
-      this.sizeCalcState = true;
+      // this.goods.forEach(item => {
+      // 	let view = uni.createSelectorQuery().select(`#cate-${item.id}`)
+      // 	view.fields({
+      // 		size: true
+      // 	}, data => {
+      // 		item.top = h
+      // 		h += data.height
+      // 		item.bottom = h
+      // 	}).exec()
+      // })
+      // this.sizeCalcState = true
     },
-    handleAddToCart: function handleAddToCart(cate, good, num) {//添加到购物车
-      var index = this.cart.findIndex(function (item) {
-        if (good.use_property) {
-          return item.id === good.id && item.props_text === good.props_text;
-        } else {
-          return item.id === good.id;
-        }
-      });
-      if (index > -1) {
-        this.cart[index].number += num;
-      } else {
-        this.cart.push({
-          id: good.id,
-          cate_id: cate.id,
-          name: good.name,
-          price: good.price,
-          number: num,
-          image: good.images,
-          use_property: good.use_property,
-          props_text: good.props_text,
-          props: good.props });
+    handleAddToCart: function handleAddToCart(cate, good, num) {var _this8 = this;return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee6() {var index, res, flag, i;return _regenerator.default.wrap(function _callee6$(_context6) {while (1) {switch (_context6.prev = _context6.next) {case 0:if (
 
-      }
+
+                _this8.isLogin) {_context6.next = 3;break;}
+                uni.navigateTo({
+                  url: '/pages/login/index' });return _context6.abrupt("return");case 3:
+
+
+
+                console.log(good);
+                index = _this8.cart.findIndex(function (item) {
+                  if (good.use_property) {
+                    return item.id === good.id && item.props_text === good.props_text;
+                  } else {
+                    return item.id === good.id;
+                  }
+                });if (!(
+                index > -1)) {_context6.next = 9;break;}
+                _this8.cart[index].number += num;_context6.next = 24;break;case 9:_context6.next = 11;return (
+
+
+
+
+
+
+
+
+
+
+
+
+
+                  _this8.$myRequet({
+                    url: '/shoppingCart/add',
+                    method: 'post',
+                    data: {
+                      name: good.name,
+                      image: good.image,
+                      userId: _this8.member.customerId,
+                      dishId: good.id,
+
+                      dishFlavor: good.props_text,
+                      number: num,
+                      amount: good.price } }));case 11:res = _context6.sent;if (!(
+
+
+
+                res.data.code == 1)) {_context6.next = 24;break;}
+
+                flag = 1;
+                i = 0;case 15:if (!(i < _this8.cart.length)) {_context6.next = 23;break;}if (!(
+                _this8.cart[i].dishId == good.id || _this8.cart[i].setmealId == good.id)) {_context6.next = 20;break;}
+                _this8.cart[i].number = _this8.cart[i].number + 1;
+                flag = 0;return _context6.abrupt("break", 23);case 20:i++;_context6.next = 15;break;case 23:
+
+
+
+                if (flag == 1) {
+                  _this8.cart.push({
+                    name: good.name,
+                    image: good.image,
+                    userId: _this8.member.customerId,
+                    dishId: good.id,
+
+                    dishFlavor: good.props_text,
+                    number: num,
+                    amount: good.price });
+
+                }
+                // console.log("success")
+              case 24:case "end":return _context6.stop();}}}, _callee6);}))();
+
+
     },
     handleReduceFromCart: function handleReduceFromCart(item, good) {
       var index = this.cart.findIndex(function (item) {return item.id === good.id;});
@@ -690,8 +758,8 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
       item), {}, {
         number: 1 })));
 
-      console.log("初始化了good");
-      console.log(this.good);
+      // console.log("初始化了good")
+      // console.log(this.good)
       for (var i = 0; i < this.good.flavors.length; i++) {
         var arr = JSON.parse(this.good.flavors[i].value);
 
@@ -719,9 +787,9 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
       this.category = {};
       this.good = {};
     },
-    changePropertyDefault: function changePropertyDefault(index, key) {var _this7 = this; //改变默认属性值
-      this.good.flavors[index].values.forEach(function (value) {return _this7.$set(value, 'is_default', 0);});
-      console.log(this.good);
+    changePropertyDefault: function changePropertyDefault(index, key) {var _this9 = this; //改变默认属性值
+      this.good.flavors[index].values.forEach(function (value) {return _this9.$set(value, 'is_default', 0);});
+      // console.log(this.good)
       // console.log(good.property)
       this.good.flavors[index].values[key].is_default = 1;
       this.good.number = 1;
@@ -739,7 +807,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
     },
     getGoodSelectedProps: function getGoodSelectedProps(good) {var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'text'; //计算当前饮品所选属性
       if (good.flavors) {
-        console.log(good.flavors);
+        // console.log(good.flavors)
         var props = [];
         good.flavors.forEach(function (_ref2)
 
@@ -752,7 +820,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
         });
         return type === 'text' ? props.join('，') : props;
       }
-      console.log("000000000000");
+      // console.log("000000000000")
       return '';
     },
     handlePropertyAdd: function handlePropertyAdd() {
@@ -767,13 +835,14 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
         props_text: this.getGoodSelectedProps(this.good),
         props: this.getGoodSelectedProps(this.good, 'id') });
 
+
       this.handleAddToCart(this.category, product, this.good.number);
       this.closeGoodDetailModal();
     },
     openCartPopup: function openCartPopup() {//打开/关闭购物车列表popup
       this.cartPopupVisible = !this.cartPopupVisible;
     },
-    handleCartClear: function handleCartClear() {var _this8 = this; //清空购物车
+    handleCartClear: function handleCartClear() {var _this10 = this; //清空购物车
       uni.showModal({
         title: '提示',
         content: '确定清空购物车么',
@@ -781,8 +850,17 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
 
         {var confirm = _ref3.confirm;
           if (confirm) {
-            _this8.cartPopupVisible = false;
-            _this8.cart = [];
+
+            _this10.cartPopupVisible = false;
+            // console.log(this.member.customerId)
+            _this10.$myRequet({
+              url: '/shoppingCart/clean',
+              method: 'DELETE',
+              data: {
+                userId: _this10.member.customerId } });
+
+
+            _this10.cart = [];
           }
         } });
 

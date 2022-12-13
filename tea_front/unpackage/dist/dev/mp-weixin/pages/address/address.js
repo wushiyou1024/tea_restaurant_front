@@ -279,9 +279,10 @@ var _addresses2 = _interopRequireDefault(__webpack_require__(/*! ../../api/addre
           url: '/pages/menu/menu' });
 
       } else if (this.scene == 'pay') {
-        uni.navigateTo({
-          url: '/pages/pay/pay' });
-
+        // uni.navigateTo({
+        // 	url: '/pages/pay/pay'
+        // })
+        uni.navigateBack();
       }
     } }) };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -137,9 +137,10 @@
 						url: '/pages/menu/menu'
 					})
 				} else if (this.scene == 'pay') {
-					uni.navigateTo({
-						url: '/pages/pay/pay'
-					})
+					// uni.navigateTo({
+					// 	url: '/pages/pay/pay'
+					// })
+			        uni.navigateBack()
 				}
 			}
 		}
