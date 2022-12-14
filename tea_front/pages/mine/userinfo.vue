@@ -81,6 +81,7 @@
 			save() {
 				// const member = Object.assign(this.$store.state.member, this.member)
 				// this.$store.commit('SET_MEMBER', member)
+								// this.SET_MEMBER(this.member)
 				const res = this.$myRequet({
 					url: '/user/save',
 					method: 'post',

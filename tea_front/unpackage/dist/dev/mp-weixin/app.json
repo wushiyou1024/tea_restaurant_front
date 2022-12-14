@@ -13,8 +13,7 @@
     "pages/orders/orders",
     "pages/orders/detail",
     "pages/mine/userinfo",
-    "pages/review/review",
-    "pages/invoice/invoice"
+    "pages/review/review"
   ],
   "subPackages": [],
   "window": {
@@ -42,8 +41,8 @@
         "selectedIconPath": "static/images/tabBar/drink_selected.png"
       },
       {
-        "pagePath": "pages/take-foods/take-foods",
-        "text": "取餐",
+        "pagePath": "pages/orders/orders",
+        "text": "订单",
         "iconPath": "static/images/tabBar/take.png",
         "selectedIconPath": "static/images/tabBar/take_selected.png"
       },

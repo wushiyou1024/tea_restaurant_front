@@ -118,14 +118,7 @@
         }
         
       
-        ,{
-            "path" : "pages/invoice/invoice",
-            "style" : {
-				"navigationBarTitleText": "厦理茶餐厅",
-				"navigationBarTextStyle": "black",
-				"navigationBarBackgroundColor": "#ffffff"
-			}
-        }
+       
       
     
     ],
@@ -151,8 +144,8 @@
 			"iconPath": "static/images/tabBar/drink.png",
 			"selectedIconPath": "static/images/tabBar/drink_selected.png"
 		}, {
-			"pagePath": "pages/take-foods/take-foods",
-			"text": "取餐",
+			"pagePath": "pages/orders/orders",
+			"text": "订单",
 			"iconPath": "static/images/tabBar/take.png",
 			"selectedIconPath": "static/images/tabBar/take_selected.png"
 		}, {

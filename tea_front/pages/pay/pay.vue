@@ -282,7 +282,7 @@
 					if (res.data.code == 1) {
 						uni.removeStorageSync('cart')
 						uni.reLaunch({
-							url: '/pages/take-foods/take-foods'
+							url: '/pages/orders/orders'
 						})
 						uni.hideLoading()
 					}
@@ -303,7 +303,7 @@
 					if (res.data.code == 1) {
 						uni.removeStorageSync('cart')
 						uni.reLaunch({
-							url: '/pages/take-foods/take-foods'
+							url: '/pages/orders/orders'
 						})
 						uni.hideLoading()
 					}

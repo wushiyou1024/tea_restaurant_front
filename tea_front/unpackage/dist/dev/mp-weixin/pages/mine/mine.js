@@ -342,8 +342,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/packages/index' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     balance: function balance() {
@@ -351,8 +353,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/balance/balance' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     addresses: function addresses() {
@@ -369,8 +373,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/integrals/integrals' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     attendance: function attendance() {
@@ -378,8 +384,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/attendance/attendance' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     orders: function orders() {
@@ -387,8 +395,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/orders/orders' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     memberCode: function memberCode() {
@@ -396,8 +406,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/mine/member-code' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     coupons: function coupons() {
@@ -405,8 +417,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/coupons/coupons' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     userinfo: function userinfo() {
@@ -419,8 +433,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
 
     },
     services: function services() {
-      uni.navigateTo({
-        url: '/pages/services/services' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     },
     giftCards: function giftCards() {
@@ -428,8 +444,10 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function ownKeys(object, enumera
         this.login();
         return;
       }
-      uni.navigateTo({
-        url: '/pages/giftcard/giftcard' });
+      uni.showToast({
+        title: '开发中...',
+        icon: 'none',
+        duration: 2000 });
 
     } } };exports.default = _default;
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./node_modules/@dcloudio/uni-mp-weixin/dist/index.js */ 1)["default"]))

@@ -3,10 +3,8 @@
 		<view class="content">
 			<list-cell last class="mb-20" :hover="false">
 				<view class="w-100 d-flex justify-content-between align-items-center">
-					<view class="font-size-lg text-color-base flex-fill">{{ storename }}</view>
-					<view class="font-size-base text-color-assist mr-10">{{ date }}</view>
-					<view class="font-size-base text-color-assist">{{ typeCate == 1 ? '堂食' : '外卖' }}</view>
-				</view>
+					<view class="font-size-lg text-color-base flex-fill">{{ '门店反馈' }}</view>
+			</view>
 			</list-cell>
 			<view class="review-form">
 				<view class="review-rate-form mb-20">

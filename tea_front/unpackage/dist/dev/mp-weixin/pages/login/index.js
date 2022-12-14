@@ -228,6 +228,11 @@ var _member = _interopRequireDefault(__webpack_require__(/*! @/api/member */ 17)
                   // window.sessionStorage.setItem('user', JSON.stringify(res.data.data.phone))
                   _this.SET_MEMBER(_member.default);
                   uni.navigateBack();
+                } else {
+                  uni.showToast({
+                    title: '验证码错误！',
+                    icon: 'none' });
+
                 }case 15:case "end":return _context.stop();}}}, _callee);}))();
 
     },

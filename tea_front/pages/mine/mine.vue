@@ -24,7 +24,7 @@
 						<view v-if="isLogin"
 							class="font-size-lg font-weight-bold d-flex justify-content-start align-items-center"
 							@tap="userinfo">
-							<view class="text-truncate">{{ member.nickname }}</view>
+							<view class="text-truncate">{{ member.nickname==null ? '厦理工人' : member.nickname }}</view>
 							<view class="iconfont iconarrow-right line-height-100"></view>
 						</view>
 						<view v-else class="font-size-lg font-weight-bold" @tap="login">请点击授权登录</view>
@@ -129,7 +129,7 @@
 					<view class="image">
 						<image src="/static/images/mine/nxsc.png"></image>
 					</view>
-					<view>奈雪商城</view>
+					<view>厦理商城</view>
 				</view>
 				<view class="grid">
 					<view class="image">
@@ -141,7 +141,7 @@
 					<view class="image">
 						<image src="/static/images/mine/wddd.png"></image>
 					</view>
-					<view>我的订单</view>
+					<view>开发票</view>
 				</view>
 				<view class="grid" @tap="userinfo">
 					<view class="image">
@@ -208,8 +208,10 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/packages/index'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			balance() {
@@ -217,8 +219,10 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/balance/balance'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			addresses() {
@@ -235,8 +239,10 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/integrals/integrals'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			attendance() {
@@ -244,8 +250,10 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/attendance/attendance'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			orders() {
@@ -253,8 +261,10 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/orders/orders'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			memberCode() {
@@ -262,17 +272,21 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/mine/member-code'
-				})
+			uni.showToast({
+				title: '开发中...',
+				icon: 'none',
+				duration: 2000
+			})  
 			},
 			coupons() {
 				if (!this.isLogin) {
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/coupons/coupons'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			userinfo() {
@@ -285,8 +299,10 @@
 				})
 			},
 			services() {
-				uni.navigateTo({
-					url: '/pages/services/services'
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
 				})
 			},
 			giftCards() {
@@ -294,9 +310,11 @@
 					this.login()
 					return
 				}
-				uni.navigateTo({
-					url: '/pages/giftcard/giftcard'
-				})
+				uni.showToast({
+					title: '开发中...',
+					icon: 'none',
+					duration: 2000
+				})  
 			}
 		}
 	}

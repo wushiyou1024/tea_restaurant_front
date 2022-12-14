@@ -89,11 +89,16 @@
 						icon: 'none'
 					});
 					Member.mobilePhone = res.data.data.phone
-				Member.nickname=res.data.data.name
-				Member.customerId=res.data.data.id
+					Member.nickname = res.data.data.name
+					Member.customerId = res.data.data.id
 					// window.sessionStorage.setItem('user', JSON.stringify(res.data.data.phone))
 					this.SET_MEMBER(Member)
 					uni.navigateBack()
+				}else{
+					uni.showToast({
+						title: '验证码错误！',
+						icon: 'none'
+					});
 				}
 
 			},

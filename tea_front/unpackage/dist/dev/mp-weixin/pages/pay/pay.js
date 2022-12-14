@@ -468,7 +468,7 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
                 if (res.data.code == 1) {
                   uni.removeStorageSync('cart');
                   uni.reLaunch({
-                    url: '/pages/take-foods/take-foods' });
+                    url: '/pages/orders/orders' });
 
                   uni.hideLoading();
                 }_context.next = 15;break;case 9:
@@ -489,7 +489,7 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
                 if (_res.data.code == 1) {
                   uni.removeStorageSync('cart');
                   uni.reLaunch({
-                    url: '/pages/take-foods/take-foods' });
+                    url: '/pages/orders/orders' });
 
                   uni.hideLoading();
                 }case 15:case "end":return _context.stop();}}}, _callee);}))();

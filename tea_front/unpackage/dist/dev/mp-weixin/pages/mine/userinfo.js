@@ -247,6 +247,7 @@ var _vuex = __webpack_require__(/*! vuex */ 33);function _interopRequireDefault(
     save: function save() {
       // const member = Object.assign(this.$store.state.member, this.member)
       // this.$store.commit('SET_MEMBER', member)
+      // this.SET_MEMBER(this.member)
       var res = this.$myRequet({
         url: '/user/save',
         method: 'post',
