@@ -13,23 +13,24 @@
 						text-color="#bfcbd9" active-text-color="#f4f4f5">
 						<div v-for="item in menuList" :key="item.id">
 
-							<el-submenu :index="item.path" v-if="item.children && item.children.length>0">
+							<el-submenu :index="item.id" v-if="item.children && item.children.length>0">
 								<template slot="title">
-									<!-- <i class="iconfont" :class="item.icon"></i> -->
+									<i :class="item.icon"></i>
 									<span>
-										<!-- {{item.name}} -->111111
+										{{item.name}}
 									</span>
 								</template>
 								<el-menu-item v-for="sub in item.children" :index="sub.id" :key="sub.id"
 									@click="menuHandle(sub,false)">
-									<!-- <i :class="iconfont" :class="sub.icon"></i> -->
+									<i  :class="sub.icon"></i>
 									<span slot="title">
-										<!-- {{sub.name}} -->2222
+										{{sub.name}}
 									</span>
 								</el-menu-item>
 							</el-submenu>
 							<el-menu-item v-else :index="item.id" @click="menuHandle(item,false)">
 								<!-- <i class="iconfont" :class="item.icon"></i> -->
+								<i class="el-icon-location"></i>
 								<span slot="title">{{item.name}}</span>
 							</el-menu-item>
 
@@ -43,8 +44,8 @@
 				<!-- <navbar /> -->
 				<div class="navbar">
 					<div class="head-lable" style="display: flex;">
-						<span  v-if="goBackFlag" class="goBack" @click="goBack()"><img src="../assets/icon/btn_back@2x.png"
-								alt="" /> 返回</span>
+						<span v-if="goBackFlag" class="goBack" @click="goBack()"><img
+								src="../assets/icon/btn_back@2x.png" alt="" /> 返回</span>
 						<span>{{headTitle}}</span>
 					</div>
 					<div class="right-menu">
@@ -64,11 +65,10 @@
 </template>
 
 <script>
-	
-	
-	
-	import { logoutApi } from '../api/login.js'
-	
+	import {
+		logoutApi
+	} from '../api/login.js'
+
 	export default {
 		name: 'index',
 		data() {
@@ -76,40 +76,54 @@
 				defAct: '/member/index',
 				menuActived: '2',
 				userInfo: {},
-				menuList: [
-					// {
-					//   id: '1',
-					//   name: '门店管理',
-					//   children: [
-					{
-						id: '2',
-						name: '员工管理',
-						path: '/member/index',
-						icon: 'icon-member'
+				menuList: [{
+						id: '1',
+						name: '门店管理',
+						icon: 'el-icon-location',
+						children: [{
+								id: '2',
+								name: '员工管理',
+								path: '/member/index',
+								icon: 'el-icon-user-solid'
+							},
+							{
+								id: '3',
+								name: '分类管理',
+								path: '/category/list',
+								icon: 'el-icon-menu'
+							},
+							{
+								id: '4',
+								name: '菜品管理',
+								path: '/food/list',
+								icon: 'el-icon-tableware'
+							},
+							{
+								id: '5',
+								name: '套餐管理',
+								path: '/combo/list',
+								icon: 'el-icon-fork-spoon'
+							},
+						]
 					},
-					{
-						id: '3',
-						name: '分类管理',
-						path: '/category/list',
-						icon: 'icon-category'
-					},
-					{
-						id: '4',
-						name: '菜品管理',
-						path: '/food/list',
-						icon: 'icon-food'
-					},
-					{
-						id: '5',
-						name: '套餐管理',
-						path: '/combo/list',
-						icon: 'icon-combo'
-					},
+
+
 					{
 						id: '6',
 						name: '订单明细',
-						url: 'page/order/list.html',
-						icon: 'icon-order'
+						path: '/order/list',
+						icon: 'el-icon-goods',
+						children: [{
+							id: '15',
+							name: '外卖订单',
+							path: '/order/list',
+							icon: 'el-icon-shopping-cart-2'
+						}, {
+							id: '22',
+							name: '自取订单',
+							path: '/order/list',
+							icon: 'el-icon-s-order'
+						}, ]
 					}
 					//   ],
 					// },
@@ -128,7 +142,7 @@
 			if (userInfo) {
 				this.userInfo = JSON.parse(userInfo)
 			}
-			console.log(this.userInfo)
+			// console.log(this.userInfo)
 			this.closeLoading()
 		},
 		beforeDestroy() {
@@ -149,18 +163,31 @@
 			},
 			goBack() {
 				// window.location.href = 'javascript:history.go(-1)'
-						console.log(this.menuActived)
-				const menu = this.menuList.find(item => item.id === this.menuActived)
-		
+				console.log(this.menuActived)
+				 var menu={}
+				 if(this.menuActived<6){
+					  // console.log("你是天才")
+					  //  console.log(this.menuList[0])
+						 menu= this.menuList[0].children.find(item => item.id === this.menuActived);
+						
+					 }else{
+						 // console.log("你是天天才")
+						 // console.log(this.menuList[1])
+						  menu = this.menuList[1].children.find(item => item.id === this.menuActived);
+						
+					 }
+				 
+		        console.log(menu)
 				// this.goBackFlag = false
 				// this.headTitle = menu.name
 				this.menuHandle(menu, false)
 			},
 			menuHandle(item, goBackFlag) {
-				console.log(item)
+				// console.log(item)
+				// console.log("天才")
 				this.loading = true
 				// this.menuActived = item.id
-				console.log(item.path)
+				// console.log(item.path)
 				this.$router.push(item.path)
 				this.headTitle = item.name
 				this.goBackFlag = goBackFlag

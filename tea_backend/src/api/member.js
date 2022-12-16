@@ -7,6 +7,24 @@ export function getMemberList (params) {
   })
 }
 
+export function getTakeout (params) {
+  return axios({
+    url: '/api/order/getTakeOut',
+    method: 'get',
+    params
+  })
+}
+
+
+
+export function deleteOrder (id) {
+  return axios({
+    url: '/api/order/delete',
+    method: 'DELETE',
+  params: { id }
+  })
+}
+
 // 修改---启用禁用接口
 export function enableOrDisableEmployee (params) {
   return axios({
@@ -33,6 +51,15 @@ export function editEmployee (params) {
     data: { ...params }
   })
 }
+
+export function  editOrder (params) {
+  return axios({
+    url: '/api/order/update',
+    method: 'put',
+    data: { ...params }
+  })
+}
+
 
 // 修改页面反查详情接口
 export function queryEmployeeById (id) {

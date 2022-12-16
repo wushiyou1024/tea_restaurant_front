@@ -135,7 +135,7 @@
   cursor: pointer;
   width: 40px;
   height: 40px;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 .navbar .right-menu .avatar-container .avatar-wrapper .el-icon-caret-bottom {
   cursor: pointer;
@@ -235,8 +235,8 @@
 }
 .el-menu .el-menu-item {
   padding: 0 0 0 32px !important;
-  margin: 0 34px 20px 0;
-  border-radius: 0 21px 21px 0 !important;
+  /* margin: 0 34px 20px 0; */
+  /* border-radius: 0 21px 21px 0 !important; */
 }
 .el-menu .el-menu-item:hover {
   color: #ffffff !important;

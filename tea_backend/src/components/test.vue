@@ -1,177 +1,103 @@
 <template>
-	<div class="app" id="app">
-		<div class="app-wrapper openSidebar clearfix">
-			<!-- sidebar -->
-			<div class="sidebar-container">
-				<div class="logo">
-					<!-- <img src="images/logo.png" width="122.5" alt="" /> -->
-					<img src="images/login/login-logo.png" alt="" style="width: 117px; height: 32px" />
-				</div>
-
-				<el-scrollbar wrap-class="scrollbar-wrapper">
-					<el-menu :default-active="defAct" :unique-opened="false" :collapse-transition="false"
-						background-color="#343744" text-color="#bfcbd9" active-text-color="#f4f4f5">
-						<div v-for="item in menuList" :key="item.id">
-							<el-submenu :index="item.id" v-if="item.children && item.children.length>0">
-								<template slot="title">
-									<!-- <i class="iconfont" :class="item.icon"></i> -->
-									<span>{{item.name}}</span>
-								</template>
-								<el-menu-item v-for="sub in item.children" :index="sub.id" :key="sub.id"
-									@click="menuHandle(sub,false)">
-									<!-- <i :class="iconfont" :class="sub.icon"></i> -->
-									<span slot="title">{{sub.name}}</span>
-								</el-menu-item>
-							</el-submenu>
-							<el-menu-item v-else :index="item.id" @click="menuHandle(item,false)">
-								<!-- <i class="iconfont" :class="item.icon"></i> -->
-								<span slot="title">{{item.name}}</span>
-							</el-menu-item>
-						</div>
-					</el-menu>
-				</el-scrollbar>
-			</div>
-			<div class="main-container">
-				<!-- <navbar /> -->
-				<div class="navbar">
-					<div class="head-lable">
-						<span v-if="goBackFlag" class="goBack" @click="goBack()"><img src="images/icons/btn_back@2x.png"
-								alt="" /> 返回</span>
-						<span>{{headTitle}}</span>
-					</div>
-					<div class="right-menu">
-						<div class="avatar-wrapper">{{ userInfo.name }}</div>
-						<!-- <div class="logout" @click="logout">退出</div> -->
-						<img src="images/icons/btn_close@2x.png" class="outLogin" alt="退出" @click="logout" />
-					</div>
-				</div>
-				<div class="app-main" v-loading="loading">
-					<div class="divTmp" v-show="loading"></div>
-					<iframe id="cIframe" class="c_iframe" name="cIframe" :src="iframeUrl" width="100%" height="auto"
-						frameborder="0" v-show="!loading"></iframe>
-				</div>
-			</div>
-		</div>
-	</div>
+<div>
+<el-row class="tac">
+  <el-col :span="12">
+    <h5>默认颜色</h5>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>导航一</span>
+        </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2">
+        <i class="el-icon-menu"></i>
+        <span slot="title">导航二</span>
+      </el-menu-item>
+      <el-menu-item index="3" disabled>
+        <i class="el-icon-document"></i>
+        <span slot="title">导航三</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-setting"></i>
+        <span slot="title">导航四</span>
+      </el-menu-item>
+    </el-menu>
+  </el-col>
+  <el-col :span="12">
+    <h5>自定义颜色</h5>
+    <el-menu
+      default-active="2"
+      class="el-menu-vertical-demo"
+      @open="handleOpen"
+      @close="handleClose"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b">
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-location"></i>
+          <span>导航一</span>
+        </template>
+        <el-menu-item-group>
+          <template slot="title">分组一</template>
+          <el-menu-item index="1-1">选项1</el-menu-item>
+          <el-menu-item index="1-2">选项2</el-menu-item>
+        </el-menu-item-group>
+        <el-menu-item-group title="分组2">
+          <el-menu-item index="1-3">选项3</el-menu-item>
+        </el-menu-item-group>
+        <el-submenu index="1-4">
+          <template slot="title">选项4</template>
+          <el-menu-item index="1-4-1">选项1</el-menu-item>
+        </el-submenu>
+      </el-submenu>
+      <el-menu-item index="2">
+        <i class="el-icon-menu"></i>
+        <span slot="title">导航二</span>
+      </el-menu-item>
+      <el-menu-item index="3" disabled>
+        <i class="el-icon-document"></i>
+        <span slot="title">导航三</span>
+      </el-menu-item>
+      <el-menu-item index="4">
+        <i class="el-icon-setting"></i>
+        <span slot="title">导航四</span>
+      </el-menu-item>
+    </el-menu>
+  </el-col>
+</el-row>
+</div>
 </template>
 
 <script>
-	export default {
-		name: 'test',
-		data() {
-			return {
-				defAct: '2',
-				menuActived: '2',
-				userInfo: {},
-				menuList: [
-					// {
-					//   id: '1',
-					//   name: '门店管理',
-					//   children: [
-					{
-						id: '2',
-						name: '员工管理',
-						url: 'page/member/list.html',
-						icon: 'icon-member'
-					},
-					{
-						id: '3',
-						name: '分类管理',
-						url: 'page/category/list.html',
-						icon: 'icon-category'
-					},
-					{
-						id: '4',
-						name: '菜品管理',
-						url: 'page/food/list.html',
-						icon: 'icon-food'
-					},
-					{
-						id: '5',
-						name: '套餐管理',
-						url: 'page/combo/list.html',
-						icon: 'icon-combo'
-					},
-					{
-						id: '6',
-						name: '订单明细',
-						url: 'page/order/list.html',
-						icon: 'icon-order'
-					}
-					//   ],
-					// },
-				],
-				iframeUrl: 'page/member/list.html',
-				headTitle: '员工管理',
-				goBackFlag: false,
-				loading: true,
-				timer: null
-			}
-		},
-		computed: {},
-		created() {
-			const userInfo = window.localStorage.getItem('userInfo')
-			if (userInfo) {
-				this.userInfo = JSON.parse(userInfo)
-			}
-			this.closeLoading()
-		},
-		beforeDestroy() {
-			this.timer = null
-			clearTimeout(this.timer)
-		},
-		mounted() {
-			window.menuHandle = this.menuHandle
-		},
-		methods: {
-			logout() {
-				logoutApi().then((res) => {
-					if (res.code === 1) {
-						localStorage.removeItem('userInfo')
-						window.location.href = '/backend/page/login/login.html'
-					}
-				})
-			},
-			goBack() {
-				// window.location.href = 'javascript:history.go(-1)'
-				const menu = this.menuList.find(item => item.id === this.menuActived)
-				// this.goBackFlag = false
-				// this.headTitle = menu.name
-				this.menuHandle(menu, false)
-			},
-			menuHandle(item, goBackFlag) {
-				this.loading = true
-				this.menuActived = item.id
-				this.iframeUrl = item.url
-				this.headTitle = item.name
-				this.goBackFlag = goBackFlag
-				this.closeLoading()
-			},
-			closeLoading() {
-				this.timer = null
-				this.timer = setTimeout(() => {
-					this.loading = false
-				}, 1000)
-			}
-		}
-	}
+ export default {
+    methods: {
+      handleOpen(key, keyPath) {
+        console.log(key, keyPath);
+      },
+      handleClose(key, keyPath) {
+        console.log(key, keyPath);
+      }
+    }
+  }
 </script>
 
-
-<style scoped>
-	@import '../styles/index.css';
-	@import '../styles/common.css'
-
-	.body {
-		min-width: 1366px;
-	}
-
-	.app-main {
-		height: calc(100% - 64px);
-	}
-
-	.app-main .divTmp {
-		width: 100%;
-		height: 100%;
-	}
+<style>
 </style>

@@ -83,7 +83,7 @@
 		created() {
 			this.init()
 			this.user = JSON.parse(localStorage.getItem('userInfo')).data.username
-			console.log(this.user)
+			// console.log(this.user)
 		},
 		mounted() {},
 		methods: {
@@ -94,14 +94,14 @@
 					name: this.input ? this.input : undefined
 				}
 				await getMemberList(params).then(res => {
-					console.log(res.data)
+					// console.log(res.data)
 					if (String(res.data.code) === '1') {
 
 						this.tableData = res.data.data.records || []
 						this.counts = res.data.data.total
 					}
 				}).catch(err => {
-					console.log(111)
+					// console.log(111)
 					this.$message.error('请求出错了：' + err)
 				})
 			},
@@ -141,7 +141,7 @@
 						'id': this.id,
 						'status': !this.status ? 1 : 0
 					}).then(res => {
-						console.log('enableOrDisableEmployee', res)
+						// console.log('enableOrDisableEmployee', res)
 						if (String(res.data.code) === '1') {
 							this.$message.success('账号状态更改成功！')
 							this.handleQuery()

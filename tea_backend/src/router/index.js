@@ -11,26 +11,31 @@ import flist from '../components/food/list'
 import fadd from '../components/food/add'
 import combolist from '../components/combo/list'
 import comboadd from '../components/combo/add'
+import order from '../components/orders/list'
+import orderDetail from '../components/orders/detail'
 Vue.use(Router)
 
 export default new Router({
-	routes: [{
+	routes: [
+		{
+			path: '/test',
+			component: test
+		},
+
+		{
 			path: '/',
 			component: login
 		},
 		{
-				path: '/login',
-				component: login
-			},
+			path: '/login',
+			component: login
+		},
 		{
 			path: '/index',
 			component: index,
 			children: [{
 					path: '/member/index',
 					component: mindex
-				}, {
-					path: '/test',
-					component: test
 				},
 				{
 					path: '/member/add',
@@ -49,13 +54,21 @@ export default new Router({
 					path: '/food/add',
 					name: 'fadd',
 					component: fadd
-				},{
-					path:'/combo/list',
-					component:combolist
-				},{
-					path:'/combo/add',
-					name:'comboadd',
-					component:comboadd
+				}, {
+					path: '/combo/list',
+					component: combolist
+				}, {
+					path: '/combo/add',
+					name: 'comboadd',
+					component: comboadd
+				}, {
+					path: '/order/list',
+					component: order
+				},
+				{
+					path:'/order/detail',
+					component:orderDetail,
+					name:'orderDetail'
 				}
 			]
 		},

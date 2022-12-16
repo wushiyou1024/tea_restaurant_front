@@ -119,7 +119,7 @@
 			}
 		},
 		created() {
-
+			this.$parent.menuActived='2'
 			this.id = this.$route.params.id
 			console.log(this.id)
 			this.actionType = this.id ? 'edit' : 'add'

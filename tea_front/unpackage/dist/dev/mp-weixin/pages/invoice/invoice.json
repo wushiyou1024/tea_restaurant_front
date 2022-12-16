@@ -1,8 +1,0 @@
-{
-  "navigationBarTitleText": "厦理茶餐厅",
-  "navigationBarTextStyle": "black",
-  "navigationBarBackgroundColor": "#ffffff",
-  "usingComponents": {
-    "list-cell": "/components/list-cell/list-cell"
-  }
-}
