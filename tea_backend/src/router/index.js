@@ -13,6 +13,8 @@ import combolist from '../components/combo/list'
 import comboadd from '../components/combo/add'
 import order from '../components/orders/list'
 import orderDetail from '../components/orders/detail'
+import takeout from '../components/orders/take_out'
+
 Vue.use(Router)
 
 export default new Router({
@@ -64,6 +66,10 @@ export default new Router({
 				}, {
 					path: '/order/list',
 					component: order
+				},
+				{
+					path:'/order/takeout',
+					component:takeout
 				},
 				{
 					path:'/order/detail',

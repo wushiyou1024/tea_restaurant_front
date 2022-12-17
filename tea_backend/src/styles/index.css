@@ -255,8 +255,8 @@
 }
 
 .el-menu .el-menu-item.is-active {
-  background-color: #ffc200 !important;
-  color: #333333 !important;
+  background-color: #ffffff !important;
+  color: #e8eacf !important;
   border-radius: 0 21px 21px 0 !important;
 }
 .el-menu .el-menu-item.is-active span {

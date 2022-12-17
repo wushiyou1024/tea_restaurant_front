@@ -22,7 +22,7 @@
 								</template>
 								<el-menu-item v-for="sub in item.children" :index="sub.id" :key="sub.id"
 									@click="menuHandle(sub,false)">
-									<i  :class="sub.icon"></i>
+									<i :class="sub.icon"></i>
 									<span slot="title">
 										{{sub.name}}
 									</span>
@@ -73,6 +73,8 @@
 		name: 'index',
 		data() {
 			return {
+				path: "ws://localhost:8080/webSocket",
+				socket: "",
 				defAct: '/member/index',
 				menuActived: '2',
 				userInfo: {},
@@ -116,7 +118,7 @@
 						children: [{
 							id: '15',
 							name: '外卖订单',
-							path: '/order/list',
+							path: '/order/takeout',
 							icon: 'el-icon-shopping-cart-2'
 						}, {
 							id: '22',
@@ -137,13 +139,16 @@
 		},
 		computed: {},
 		created() {
+
 			const userInfo = window.localStorage.getItem('userInfo')
 
 			if (userInfo) {
 				this.userInfo = JSON.parse(userInfo)
+
 			}
 			// console.log(this.userInfo)
 			this.closeLoading()
+			this.init()
 		},
 		beforeDestroy() {
 			this.timer = null
@@ -164,20 +169,20 @@
 			goBack() {
 				// window.location.href = 'javascript:history.go(-1)'
 				console.log(this.menuActived)
-				 var menu={}
-				 if(this.menuActived<6){
-					  // console.log("你是天才")
-					  //  console.log(this.menuList[0])
-						 menu= this.menuList[0].children.find(item => item.id === this.menuActived);
-						
-					 }else{
-						 // console.log("你是天天才")
-						 // console.log(this.menuList[1])
-						  menu = this.menuList[1].children.find(item => item.id === this.menuActived);
-						
-					 }
-				 
-		        console.log(menu)
+				var menu = {}
+				if (this.menuActived < 6) {
+					// console.log("你是天才")
+					//  console.log(this.menuList[0])
+					menu = this.menuList[0].children.find(item => item.id === this.menuActived);
+
+				} else {
+					// console.log("你是天天才")
+					// console.log(this.menuList[1])
+					menu = this.menuList[1].children.find(item => item.id === this.menuActived);
+
+				}
+
+				console.log(menu)
 				// this.goBackFlag = false
 				// this.headTitle = menu.name
 				this.menuHandle(menu, false)
@@ -198,6 +203,52 @@
 				this.timer = setTimeout(() => {
 					this.loading = false
 				}, 1000)
+			},
+			// websocket测试
+			init: function() {
+
+				console.log(this.path)
+				if (typeof(WebSocket) === "undefined") {
+					alert("您的浏览器不支持socket")
+				} else {
+					// 实例化socket
+					this.socket = new WebSocket(this.path)
+					// 监听socket连接
+					this.socket.onopen = this.open
+					// 监听socket错误信息
+					this.socket.onerror = this.error
+					// 监听socket消息
+					this.socket.onmessage = this.getMessage
+				}
+			},
+			open: function() {
+				console.log("socket连接成功")
+			},
+			error: function() {
+				console.log("连接错误")
+			},
+			getMessage: function(msg) {
+				console.log(msg.data)
+				var audio = new Audio();
+				audio.src = "http://localhost:8080/music/welcome.mp3"
+				audio.play()
+
+				this.$notify({
+					title: '提醒',
+					message: '您有一条新订单请及时处理',
+					 type: 'warning'
+				});
+			},
+			send: function() {
+				let code = 4
+				this.socket.send(code)
+			},
+			close: function() {
+				console.log("socket已经关闭")
+			},
+			destroyed() {
+				// 销毁监听
+				this.socket.onclose = this.close
 			}
 		}
 	}
