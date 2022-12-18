@@ -243,6 +243,38 @@
 					url: '/pages/remark/remark?remark=' + this.form.remark
 				})
 			},
+
+			connectWeb() {
+
+				var socketOpen = false;
+				var socketMsgQueue = [];
+
+				uni.connectSocket({
+					url: 'ws://192.168.0.108:8080/webSocket'
+				});
+
+				uni.onSocketOpen(function(res) {
+					socketOpen = true;
+					sendSocketMessage("外卖");
+					socketMsgQueue = [];
+					uni.closeSocket();
+				});
+				uni.onSocketClose(function(res) {
+					console.log('WebSocket 已关闭！');
+				});
+
+				function sendSocketMessage(msg) {
+				
+						uni.sendSocketMessage({
+							data: msg
+						});
+			
+				}
+
+
+
+
+			},
 			chooseAddress() {
 				uni.navigateTo({
 					url: '/pages/address/address?is_choose=true&scene=pay'
@@ -280,6 +312,8 @@
 						}
 					})
 					if (res.data.code == 1) {
+						this.connectWeb()
+
 						uni.removeStorageSync('cart')
 						uni.reLaunch({
 							url: '/pages/orders/orders'
@@ -297,10 +331,11 @@
 							userId: this.member.customerId,
 							// addressBookId:
 							addressBookId: this.address.id,
-						
+
 						}
 					})
 					if (res.data.code == 1) {
+									this.connectWeb()
 						uni.removeStorageSync('cart')
 						uni.reLaunch({
 							url: '/pages/orders/orders'

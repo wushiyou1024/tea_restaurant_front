@@ -5,6 +5,7 @@ import util from './common/util'
 import store from './store'
 import { myRequet } from'./util/api.js'
 
+
 Vue.prototype.$myRequet=myRequet
 Vue.config.productionTip = false
 

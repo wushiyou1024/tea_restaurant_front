@@ -8,21 +8,21 @@
 		}, {
 			"path": "pages/menu/menu",
 			"style": {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}, {
 			"path": "pages/take-foods/take-foods",
 			"style": {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
 		}, {
 			"path": "pages/mine/mine",
 			"style": {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -30,7 +30,7 @@
 	    ,{
             "path" : "pages/pay/pay",
             "style" : {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -38,7 +38,7 @@
         ,{
             "path" : "pages/remark/remark",
             "style" : {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -72,7 +72,7 @@
         ,{
             "path" : "pages/address/add",
             "style" : {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}
@@ -111,7 +111,7 @@
 		{
             "path" : "pages/review/review",
             "style" : {
-				"navigationBarTitleText": "厦理茶餐厅",
+				"navigationBarTitleText": "理工茶餐厅",
 				"navigationBarTextStyle": "black",
 				"navigationBarBackgroundColor": "#ffffff"
 			}

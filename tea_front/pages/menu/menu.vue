@@ -69,7 +69,7 @@
 								<view class="items">
 									<!-- 商品 begin -->
 									<view class="good">
-										<image :src="'http://localhost:8080/common/download?name='+item.image"
+										<image :src="'http://192.168.0.108:8080/common/download?name='+item.image"
 											class="image" @tap="showGoodDetailModal(item, good)">
 										</image>
 										<view class="right">
@@ -130,7 +130,7 @@
 		<modal :show="goodDetailModalVisible" class="good-detail-modal" color="#5A5B5C" width="90%" custom
 			padding="0rpx" radius="12rpx">
 			<view class="cover">
-				<image v-if="good.image" :src="'http://localhost:8080/common/download?name='+good.image" class="image">
+				<image v-if="good.image" :src="'http://192.168.0.108:8080/common/download?name='+good.image" class="image">
 				</image>
 				<view class="btn-group">
 					<image src="/static/images/menu/share-good.png"></image>

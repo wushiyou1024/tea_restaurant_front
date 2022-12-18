@@ -13,10 +13,11 @@ const store = new Vuex.Store({
 		address: {},
 		addresses: addresses,
 		member: {},
-		order: {}
+		order: {},
+	
 	},
 	getters: {
-		isLogin: state => Object.keys(state.member).length > 0	//是否登录
+		isLogin: state => Object.keys(state.member).length > 0 //是否登录
 	},
 	mutations: {
 		SET_ORDER_TYPE(state, type) {
@@ -42,10 +43,16 @@ const store = new Vuex.Store({
 		},
 		SET_ORDER(state, order) {
 			state.order = order
-		}
+		},
+		// websocket有关的内容****************************************************
+		
+
+
 	},
 	actions: {
-		async getStore({commit}) {
+		async getStore({
+			commit
+		}) {
 			const store = await api('store')
 			commit('SET_STORE', store)
 		}

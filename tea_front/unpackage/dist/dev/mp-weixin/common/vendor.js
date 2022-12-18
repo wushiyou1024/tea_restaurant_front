@@ -14747,6 +14747,7 @@ var store = new _vuex.default.Store({
     member: {},
     order: {} },
 
+
   getters: {
     isLogin: function isLogin(state) {return Object.keys(state.member).length > 0;} //是否登录
   },
@@ -14774,10 +14775,16 @@ var store = new _vuex.default.Store({
     },
     SET_ORDER: function SET_ORDER(state, order) {
       state.order = order;
-    } },
+    }
+    // websocket有关的内容****************************************************
+  },
+
+
 
   actions: {
-    getStore: function getStore(_ref) {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var commit, store;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:commit = _ref.commit;_context.next = 3;return (
+    getStore: function getStore(_ref)
+
+    {return _asyncToGenerator( /*#__PURE__*/_regenerator.default.mark(function _callee() {var commit, store;return _regenerator.default.wrap(function _callee$(_context) {while (1) {switch (_context.prev = _context.next) {case 0:commit = _ref.commit;_context.next = 3;return (
                   (0, _api.default)('store'));case 3:store = _context.sent;
                 commit('SET_STORE', store);case 5:case "end":return _context.stop();}}}, _callee);}))();
     } } });var _default =
@@ -17308,7 +17315,7 @@ module.exports = index_cjs;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequet = void 0;var BASE_URL = 'http://localhost:8080';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequet = void 0;var BASE_URL = 'http://192.168.0.108:8080';
 
 var myRequet = function myRequet(options) {
   return new Promise(function (resolve, reject) {

@@ -429,6 +429,38 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
         url: '/pages/remark/remark?remark=' + this.form.remark });
 
     },
+
+    connectWeb: function connectWeb() {
+
+      var socketOpen = false;
+      var socketMsgQueue = [];
+
+      uni.connectSocket({
+        url: 'ws://192.168.0.108:8080/webSocket' });
+
+
+      uni.onSocketOpen(function (res) {
+        socketOpen = true;
+        sendSocketMessage("外卖");
+        socketMsgQueue = [];
+        uni.closeSocket();
+      });
+      uni.onSocketClose(function (res) {
+        console.log('WebSocket 已关闭！');
+      });
+
+      function sendSocketMessage(msg) {
+
+        uni.sendSocketMessage({
+          data: msg });
+
+
+      }
+
+
+
+
+    },
     chooseAddress: function chooseAddress() {
       uni.navigateTo({
         url: '/pages/address/address?is_choose=true&scene=pay' });
@@ -466,6 +498,8 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
 
 
                 if (res.data.code == 1) {
+                  _this.connectWeb();
+
                   uni.removeStorageSync('cart');
                   uni.reLaunch({
                     url: '/pages/orders/orders' });
@@ -487,6 +521,7 @@ var _orders = _interopRequireDefault(__webpack_require__(/*! @/api/orders */ 25)
 
 
                 if (_res.data.code == 1) {
+                  _this.connectWeb();
                   uni.removeStorageSync('cart');
                   uni.reLaunch({
                     url: '/pages/orders/orders' });
