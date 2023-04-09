@@ -17315,7 +17315,7 @@ module.exports = index_cjs;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequet = void 0;var BASE_URL = 'http://192.168.0.108:8080';
+/* WEBPACK VAR INJECTION */(function(uni) {Object.defineProperty(exports, "__esModule", { value: true });exports.myRequet = void 0;var BASE_URL = 'http://localhost:8080';
 
 var myRequet = function myRequet(options) {
   return new Promise(function (resolve, reject) {

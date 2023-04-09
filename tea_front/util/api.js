@@ -1,4 +1,4 @@
-const BASE_URL='http://192.168.0.108:8080'
+const BASE_URL='http://localhost:8080'
 
 export const myRequet = (options)=>{
 	return new Promise((resolve,reject)=>{
